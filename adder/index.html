@@ -1,0 +1,85 @@
+<html>
+<head>
+  <title>Two-bit Adder</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css"><!--
+    div#body        { width: 720px; text-align: center; }
+    table#switch    { border-collapse: collapse; margin: 0px auto 30px; }
+    table#switch td { padding: 0px 15px; text-align: left;
+                      border-width: 1px; border-style: solid; }
+    table#switch th { border-width: 1px; border-style: solid;
+                      background: #f0f0ff; text-align: center; }
+    div.args        { margin: 15px auto; }
+    input.arg       { margin: 0px 60px; }
+  --></style>
+  <script type="text/javascript"><!--
+var N_BIT = 2;
+var N_SLIDE = 16;
+var slide = new Array(N_SLIDE);
+for (var i = 0; i < slide.length; i++) {
+  slide[i] = new Image();
+  slide[i].src = "slide" + ("0" + i).slice(-2) + ".png";
+}
+
+var swstate = new Array(2 * N_BIT);
+for (var i = 0; i < swstate.length; i++) {
+  swstate[i] = 0;
+}
+
+function calc() {
+  var val = 0;
+  for (var i = N_BIT * 2 - 1; i >= 0; i--) {
+    val = val * 2 + swstate[i];
+  }
+  document.images["diagram"].src = slide[val].src;
+  var a0 = val % 4;
+  var a1 = val >> 2;
+  document.form1.arg0.value = a0;
+  document.form1.arg1.value = a1;
+  document.form1.ans .value = a0 + a1;
+}
+
+function toggle(sw) {
+  swstate[sw] = 1 - swstate[sw];
+  calc();
+}
+  //-->
+  </script>
+</head>
+<body>
+<h1>2-bit Adder</h1>
+<p>
+Push any of the 4 switches at the upper part of the diagram.
+</p>
+
+<div id="body">
+<form name="form1" action="#">
+
+  <div class="args">
+    <input type="text" name="arg1" size="3" value="0" class="arg" />
+    <input type="text" name="arg0" size="3" value="0" class="arg" />
+  </div>
+
+<img src="slide00.png" width="720" height="510"
+     alt="diagram of a 2-bit adder circuit" name="diagram"
+     usemap="#switches" />
+<map name="switches">
+  <area shape="rect" coords="213,40,277,127" href="#nogo" alt="SW3"
+        onmousedown="toggle(3)" />
+  <area shape="rect" coords="284,40,348,127" href="#nogo" alt="SW2"
+        onmousedown="toggle(2)" />
+  <area shape="rect" coords="417,40,481,127" href="#nogo" alt="SW1"
+        onmousedown="toggle(1)" />
+  <area shape="rect" coords="488,40,552,127" href="#nogo" alt="SW0"
+        onmousedown="toggle(0)" />
+</map>
+
+  <div class="args">
+    <input type="text" name="ans" size="3" value="0" />
+  </div>
+
+</form>
+</div>
+
+</body>
+</html>
