@@ -451,7 +451,7 @@ Q9
 ------------------------------------------------------------------
 
 This HTML file is made from
-[sat-tutorial.md](sat-tutorial.md.txt)
+[sat-tutorial.md](sat-tutorial.md)
 with [pandoc](http://johnmacfarlane.net/pandoc/).
 
 ~~~
