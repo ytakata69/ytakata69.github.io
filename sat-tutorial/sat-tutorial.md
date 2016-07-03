@@ -1,6 +1,6 @@
 % SATソルバで遊ぼう
 %
-% Last modified: Mon Aug  4 20:58:46 JST 2014
+% Last modified: Sun Jul  3 18:40:22 JST 2016
 
 ------------------------------------------------------------------
 
@@ -21,8 +21,8 @@ SAT問題
 
 CNFの構文
 --------
-* CNF式　　　　　 $F = c_1\land c_2\land\ldots\land c_n$
-* 節(clause)　　　　 $c_i = l_{i1}\lor l_{i2}\lor\ldots\lor l_{im_i}$
+* CNF式　　　　　　 $F = c_1\land c_2\land\ldots\land c_n$
+* 節(clause)　　　　$c_i = l_{i1}\lor l_{i2}\lor\ldots\lor l_{im_i}$
 * リテラル(literal)　 $l_{ij}$ は，$x_{k_{ij}}$ または $\neg x_{k_{ij}}$
 
 ### SATソルバへの入力（DIMACS CNF形式）
@@ -38,9 +38,9 @@ p cnf 3 4
 -1 -2 0
 ~~~~~
 
-* 行頭が c: コメント
-* 行頭が p: ヘッダ行: `p cnf` $v$ $n$
-    * $v$: 変数の個数，$n$: 節の個数（Minisatは$n$を無視する）
+* 行頭が c  --- コメント
+* 行頭が p  --- ヘッダ行 `p cnf `$v$ $n$
+    * $v$: 変数の個数，$n$: 節の個数
 * それ以降: 1行に1個の節を記述。
     * 変数は番号1〜$v$で表す。
     * $\neg$ は $-$ で表す。
@@ -69,25 +69,30 @@ A-WS室でMiniSatを使う準備
 
 ターミナル上で下記を実行（シェルを起動するたびに必要）
 
-    $ source ~y-takata/Public/minisat-setup
+    $ source ~y-takata/Public/ase-setup
 
 ### 使えるようになるコマンド ###
 
-* `minisat` 　 SATソルバ
-* `poslit`　　 minisatの出力から負リテラルを消すツール
-* `z3`　　　　　SMTソルバ
+* `minisat` 　　　SATソルバ
+* `remove_neg`　 minisatの出力から負リテラルを消すツール
+* `z3`　　　　　　SMTソルバ
 
 ~~~
-$ poslit out.txt
+$ remove_neg out.txt
 SAT
 2 0
+~~~
+
+ちなみに`remove_neg`の中身:
+
+~~~
+#!/bin/sh
+exec sed 's/-[0-9]* //g' $@
 ~~~
 
 ------------------------------------------------------------------
 
 # SATソルバで解こう
-
-解答フォーム: <http://goo.gl/W4AbB4>
 
 Q1
 ===
@@ -195,7 +200,7 @@ $x_{i,j,d}=1$ ⇔ マス$(i,j)$の数字が$d$.
 制約
 
 a. すべてのマスが数字をもつ
-b. 各マスの数字は高々1つ
+b. (各マスの数字は高々1つ) --- aとcから言えるので不要
 c. 同じ行に同じ数字がない
 d. 同じ列に同じ数字がない
 e. 同じブロックに同じ数字がない
@@ -205,8 +210,6 @@ f. 予め数字の入っているマスはその数字をもつ
 
 * 制約a = $x_{i,j,1}\lor x_{i,j,2}\lor x_{i,j,3}\lor x_{i,j,4}$
           for $\forall i,j$.
-* 制約b = $\neg x_{i,j,k}\lor\neg x_{i,j,k'}$ for $\forall i,j,k,k'$
-          such that $k\neq k'$.
 * 制約c = $\neg x_{i,j,k}\lor\neg x_{i,j',k}$ for $\forall i,j,j',k$
           such that $j\neq j'$.
 * 制約d = $\neg x_{i,j,k}\lor\neg x_{i',j,k}$ for $\forall i,i',j,k$
@@ -218,16 +221,16 @@ f. 予め数字の入っているマスはその数字をもつ
 変数の数, 節の数
 
 * 変数の個数は444個（本来必要な変数は64個）。
-* 節の個数は，計404個。
+* 節の個数は，計308個。
     * 制約a: 16個
-    * 制約b, c, d, e: 各96個 (=4×4×6)
+    * 制約c, d, e: 各96個 (=4×4×6)
     * 制約f: 4個
 
-404個の節を手で入力するのは莫迦らしい。CNFファイルを出力するプログラムを作るのがよい。
+308個の節を手で入力するのは莫迦らしい。CNFファイルを出力するプログラムを作るのがよい。
 演習時間節約のため，そのようなCプログラムを配付する。
 
-* `~y-takata/Public/sudoku.c`
-    * このプログラムは制約a〜eに対応する節 (400個) しか出力しない。
+* [sudoku.c](sudoku.c)
+    * このプログラムは制約a〜eに対応する節 (304個) しか出力しない。
       制約fに関する節は手で入力すること。
     * プログラム中のマクロ `N` と `SQRT_N` の値を変えれば，N×N数独問題のための節集合を出力できる。
 

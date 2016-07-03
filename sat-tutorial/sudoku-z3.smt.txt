@@ -1,0 +1,43 @@
+(set-logic UFLIA)  ; Undefined Functions
+
+(define-fun N () Int 4)
+(define-fun SQRT_N () Int 2)
+(define-fun BLOCK ((i Int) (j Int)) Int   ; (row,col)->block
+  (+ (* (div (- i 1) SQRT_N) SQRT_N) (div (- j 1) SQRT_N)))
+
+(declare-fun x (Int Int) Int) ; (row,col)->digit
+
+; 各マスの数字は1から4
+(assert (forall ((i Int) (j Int))
+          (and (<= 1 (x i j)) (<= (x i j) N))))
+
+; 同じ行に同じ数字がない
+(assert (forall ((i Int) (j Int) (k Int))
+          (=> (and (<= 1 j) (< j k) (<= k N))
+              (not (= (x i j) (x i k))))))
+
+; 同じ列に同じ数字がない
+(assert (forall ((i Int) (j Int) (k Int))
+          (=> (and (<= 1 j) (< j k) (<= k N))
+              (not (= (x j i) (x k i))))))
+
+; 同じブロックに同じ数字がない
+(assert (forall ((i Int) (j Int) (k Int) (l Int))
+          (=> (and (<= 1 i) (<= i k) (<= k N)
+                   (<= 1 j) (<= j N) (<= 1 l) (<= l N)
+                   (=> (= i k) (< l j))
+                   (= (BLOCK i j) (BLOCK k l)))
+              (not (= (x i j) (x k l))))))
+
+; 予め数字が入っているマスはその数字をもつ
+(assert (and (= (x 1 1) 1)
+             (= (x 1 3) 2)
+             (= (x 3 2) 3)
+             (= (x 3 4) 4)))
+
+(check-sat)
+(get-value ((x 1 1) (x 1 2) (x 1 3) (x 1 4)
+            (x 2 1) (x 2 2) (x 2 3) (x 2 4)
+            (x 3 1) (x 3 2) (x 3 3) (x 3 4)
+            (x 4 1) (x 4 2) (x 4 3) (x 4 4)))
+(exit)
