@@ -16,3 +16,8 @@ text-align: right;
 dl dt {
 font-weight: bold;
 }
+
+pre {
+padding: 10pt;
+background: #eee;
+}
