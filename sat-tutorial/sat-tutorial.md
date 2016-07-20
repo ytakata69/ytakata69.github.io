@@ -1,6 +1,6 @@
 % SATソルバで遊ぼう
 %
-% Last modified: Sun Jul  3 18:40:22 JST 2016
+% Last modified: Wed Jul 20 21:57:04 JST 2016
 
 ------------------------------------------------------------------
 
@@ -435,7 +435,7 @@ Q9
     * SMTソルバの一つ。JARファイル1個で出来ているので，いろいろな環境で使いやすい。
 * [SMT-LIB](http://smt-lib.org/)
     * [The SMT-LIBv2 Language and Tools: A Tutorial
-      ](http://www.grammatech.com/resource/smt/SMTLIBTutorial.pdf)
+      ](http://smtlib.github.io/jSMTLIB/SMTLIBTutorial.pdf)
         * SMT-LIBv2形式（SMTソルバへの入力構文の事実上の標準）
 
 ------------------------------------------------------------------
