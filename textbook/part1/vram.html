@@ -1,0 +1,658 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>9. VRAM直接書き込み · 情報学群実験第2</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="logical-op.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../preface/">
+            
+                <a href="../preface/">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../preface/goal.html">
+            
+                <a href="../preface/goal.html">
+            
+                    
+                    達成目標
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../preface/bookmark.html">
+            
+                <a href="../preface/bookmark.html">
+            
+                    
+                    情報のありか
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Part I: i386アセンブリプログラミング</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="hellohex.html">
+            
+                <a href="hellohex.html">
+            
+                    
+                    1. 機械語とアセンブリ言語
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="binaryfiles.html">
+            
+                <a href="binaryfiles.html">
+            
+                    
+                    1-a. 補足：ファイル間の関係
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="github.html">
+            
+                <a href="github.html">
+            
+                    
+                    1-b. GitHubアカウントの取得
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="i386.html">
+            
+                <a href="i386.html">
+            
+                    
+                    1-c. i386アーキテクチャの基礎知識
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="arith.html">
+            
+                <a href="arith.html">
+            
+                    
+                    2. さまざまな演算命令
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="github-team.html">
+            
+                <a href="github-team.html">
+            
+                    
+                    2-a. グループ用GitHubリポジトリの作成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="github-dev.html">
+            
+                <a href="github-dev.html">
+            
+                    
+                    2-b. Gitを使った開発作業
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="jump.html">
+            
+                <a href="jump.html">
+            
+                    
+                    3. 条件分岐と繰り返し
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="memory.html">
+            
+                <a href="memory.html">
+            
+                    
+                    4. 主記憶領域
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="write.html">
+            
+                <a href="write.html">
+            
+                    
+                    4-a. writeシステムコールによる文字列の出力
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="report.html">
+            
+                <a href="report.html">
+            
+                    
+                    5. 実験レポートの書き方
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.1" data-path="report-work.html">
+            
+                <a href="report-work.html">
+            
+                    
+                    5-a. 実験レポート練習問題
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="stack.html">
+            
+                <a href="stack.html">
+            
+                    
+                    6. スタックとサブルーチン呼び出し
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.6.1" data-path="separate-asm.html">
+            
+                <a href="separate-asm.html">
+            
+                    
+                    6-a. ソースファイルの分割
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="make.html">
+            
+                <a href="make.html">
+            
+                    
+                    7. makeコマンドによる省力化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="logical-op.html">
+            
+                <a href="logical-op.html">
+            
+                    
+                    8. 論理演算
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.9" data-path="vram.html">
+            
+                <a href="vram.html">
+            
+                    
+                    9. VRAM直接書き込み
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >9. VRAM直接書き込み</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="vram&#x76F4;&#x63A5;&#x66F8;&#x304D;&#x8FBC;&#x307F;">VRAM&#x76F4;&#x63A5;&#x66F8;&#x304D;&#x8FBC;&#x307F;</h1><p>VRAM&#x3068;&#x306F;&#x300C;Video RAM&#x300D;&#x306E;&#x3053;&#x3068;&#x3060;&#x3002;
+&#x8868;&#x793A;&#x88C5;&#x7F6E;&#x3092;&#x6301;&#x3064;&#x30B3;&#x30F3;&#x30D4;&#x30E5;&#x30FC;&#x30BF;&#x306F;&#x901A;&#x5E38;&#xFF0C;&#x8A18;&#x61B6;&#x9818;&#x57DF;&#x306E;&#x4E00;&#x90E8;&#x304C;VRAM&#x3068;&#x3057;&#x3066;&#x4F7F;&#x308F;&#x308C;&#x3066;&#x3044;&#x308B;&#x3002;
+VRAM&#x306B;&#x6587;&#x5B57;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x304D;&#x8FBC;&#x3080;&#x3068;&#xFF0C;&#x66F8;&#x304D;&#x8FBC;&#x3093;&#x3060;&#x756A;&#x5730;&#x306B;&#x5FDC;&#x3058;&#x305F;&#x753B;&#x9762;&#x4E0A;&#x306E;&#x4F4D;&#x7F6E;&#x306B;&#xFF0C;&#x305D;&#x306E;&#x6587;&#x5B57;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;
+&#xFF08;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x8868;&#x793A;&#x30E2;&#x30FC;&#x30C9;&#x306E;&#x5834;&#x5408;&#x3002;&#x8868;&#x793A;&#x7528;&#x30CF;&#x30FC;&#x30C9;&#x30A6;&#x30A7;&#x30A2;&#x3092;&#x30B0;&#x30E9;&#x30D5;&#x30A3;&#x30C3;&#x30AF;&#x30E2;&#x30FC;&#x30C9;&#x306B;&#x5207;&#x308A;&#x66FF;&#x3048;&#x305F;&#x5834;&#x5408;&#x306F;&#xFF0C;VRAM&#x4E2D;&#x306E;1&#x30D3;&#x30C3;&#x30C8;&#x304C;1&#x753B;&#x7D20;&#x306B;&#x5BFE;&#x5FDC;&#x3057;&#xFF0C;&#x66F8;&#x304D;&#x8FBC;&#x3093;&#x3060;&#x30D3;&#x30C3;&#x30C8;&#x5217;&#x306B;&#x5FDC;&#x3058;&#x305F;&#x753B;&#x7D20;&#x306E;&#x5217;&#x304C;&#x753B;&#x9762;&#x306B;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#xFF09;&#x3002;
+&#x3053;&#x308C;&#x3089;&#x306E;&#x30B3;&#x30F3;&#x30D4;&#x30E5;&#x30FC;&#x30BF;&#x306B;&#x306F;&#xFF0C;60&#x5206;&#x306E;1&#x79D2;&#x7A0B;&#x5EA6;&#x306E;&#x4E00;&#x5B9A;&#x6642;&#x9593;&#x3054;&#x3068;&#x306B;VRAM&#x306E;&#x5185;&#x5BB9;&#x3092;&#x8AAD;&#x307F;&#x51FA;&#x3057;&#xFF0C;&#x8868;&#x793A;&#x88C5;&#x7F6E;&#x306B;&#x9001;&#x308B;&#x753B;&#x50CF;&#x4FE1;&#x53F7;&#x3092;&#x751F;&#x6210;&#x3059;&#x308B;&#x3088;&#x3046;&#x306A;&#x30CF;&#x30FC;&#x30C9;&#x30A6;&#x30A7;&#x30A2;&#x304C;&#x642D;&#x8F09;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3002;</p><p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#xFF0C;&#x300C;OS&#x3092;&#x4ECB;&#x3055;&#x305A;&#x306B;&#x30CF;&#x30FC;&#x30C9;&#x30A6;&#x30A7;&#x30A2;&#x3092;&#x64CD;&#x4F5C;&#x3059;&#x308B;&#x300D;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x306E;&#x4F8B;&#x3068;&#x3057;&#x3066;&#xFF0C;&#x8868;&#x793A;&#x3057;&#x305F;&#x3044;&#x5185;&#x5BB9;&#x3092;VRAM&#x306B;&#x76F4;&#x63A5;&#x66F8;&#x304D;&#x8FBC;&#x3080;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3092;&#x4F5C;&#x308B;&#x3002;
+&#x3053;&#x308C;&#x306F;&#x7B2C;II&#x90E8;&#x3067;&#x884C;&#x3046;&#x5B9F;&#x9A13;&#x306E;&#x4E8B;&#x524D;&#x7DF4;&#x7FD2;&#x3067;&#x3082;&#x3042;&#x308B;&#x3057;&#xFF0C;&#x300C;OS&#x304C;&#x3084;&#x3063;&#x3066;&#x3044;&#x308B;&#x4ED5;&#x4E8B;&#x3092;&#x7406;&#x89E3;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x81EA;&#x5206;&#x306E;&#x624B;&#x3067;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3057;&#x3066;&#x307F;&#x308B;&#x300D;&#x305F;&#x3081;&#x3067;&#x3082;&#x3042;&#x308B;&#x3002;</p><p>&#x3055;&#x3066;&#x3057;&#x304B;&#x3057;&#xFF0C;OS&#x306E;&#x4E0A;&#x3067;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x5834;&#x5408;&#xFF0C;OS&#x306E;&#x4FDD;&#x8B77;&#x6A5F;&#x80FD;&#x304C;&#x50CD;&#x3044;&#x3066;&#xFF0C;VRAM&#x3092;&#x76F4;&#x63A5;&#x8AAD;&#x307F;&#x66F8;&#x304D;&#x3059;&#x308B;&#x3053;&#x3068;&#x306F;&#x3067;&#x304D;&#x306A;&#x3044;&#x3002;
+&#x3053;&#x3053;&#x3067;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306A;&#x65B9;&#x6CD5;&#x3067;&#xFF0C;&#x300C;VRAM&#x306B;&#x76F4;&#x63A5;&#x66F8;&#x304D;&#x8FBC;&#x3080;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x300D;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x3002;</p><ul><li>&#x30CF;&#x30FC;&#x30C9;&#x30C7;&#x30A3;&#x30B9;&#x30AF;&#x4E2D;&#x306E;&#x300C;&#x30D6;&#x30FC;&#x30C8;&#x30B9;&#x30C8;&#x30E9;&#x30C3;&#x30D7;&#x30ED;&#x30FC;&#x30C0;&#x300D;&#xFF08;OS&#x3092;&#x30CF;&#x30FC;&#x30C9;&#x30C7;&#x30A3;&#x30B9;&#x30AF;&#x304B;&#x3089;&#x8AAD;&#x307F;&#x51FA;&#x3057;&#x3066;&#x8D77;&#x52D5;&#x3059;&#x308B;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#xFF09;&#x3092;&#xFF0C;&#x81EA;&#x4F5C;&#x306E;&#x300C;VRAM&#x306B;&#x76F4;&#x63A5;&#x66F8;&#x304D;&#x8FBC;&#x3080;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x300D;&#x306B;&#x7F6E;&#x304D;&#x63DB;&#x3048;&#x308B;&#x3002;&#x30B3;&#x30F3;&#x30D4;&#x30E5;&#x30FC;&#x30BF;&#x306B;&#x96FB;&#x6E90;&#x3092;&#x5165;&#x308C;&#x308B;&#x3068;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x30D6;&#x30FC;&#x30C8;&#x30B9;&#x30C8;&#x30E9;&#x30C3;&#x30D7;&#x30ED;&#x30FC;&#x30C0;&#xFF08;&#x306E;&#x3075;&#x308A;&#x3092;&#x3059;&#x308B;&#x81EA;&#x4F5C;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#xFF09;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&#x304C;&#xFF0C;&#x5F53;&#x7136;&#x306A;&#x304C;&#x3089;OS&#x304C;&#x8D77;&#x52D5;&#x3059;&#x308B;&#x524D;&#x306B;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&#x306E;&#x3067;&#xFF0C;&#x3059;&#x3079;&#x3066;&#x306E;&#x30CF;&#x30FC;&#x30C9;&#x30A6;&#x30A7;&#x30A2;&#x306B;&#x81EA;&#x7531;&#x306B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x308B;&#x3002;
+</li>
+<li>&#x3068;&#x306F;&#x8A00;&#x3048;&#xFF0C;&#x30EF;&#x30FC;&#x30AF;&#x30B9;&#x30C6;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x5BA4;&#x306E;&#x30B3;&#x30F3;&#x30D4;&#x30E5;&#x30FC;&#x30BF;&#x306E;&#x30D6;&#x30FC;&#x30C8;&#x30B9;&#x30C8;&#x30E9;&#x30C3;&#x30D7;&#x30ED;&#x30FC;&#x30C0;&#x3092;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x308B;&#x3053;&#x3068;&#x306F;&#x3082;&#x3061;&#x308D;&#x3093;&#x7981;&#x6B62;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#xFF0C;&#x300C;&#x30D1;&#x30BD;&#x30B3;&#x30F3;&#x30CF;&#x30FC;&#x30C9;&#x30A6;&#x30A7;&#x30A2;&#x306E;&#x52D5;&#x4F5C;&#x3092;&#x6A21;&#x5023;&#x3059;&#x308B;&#x30BD;&#x30D5;&#x30C8;&#x30A6;&#x30A7;&#x30A2;&#xFF08;PC&#x30A8;&#x30DF;&#x30E5;&#x30EC;&#x30FC;&#x30BF;&#xFF09;&#x300D;&#x3092;&#x4F7F;&#x3063;&#x3066;&#xFF0C;&#x30D6;&#x30FC;&#x30C8;&#x30B9;&#x30C8;&#x30E9;&#x30C3;&#x30D7;&#x30ED;&#x30FC;&#x30C0;&#x3092;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x305F;&#x3068;&#x304D;&#x306E;&#x52D5;&#x4F5C;&#x3092;&#x89B3;&#x5BDF;&#x3059;&#x308B;&#x3053;&#x3068;&#x306B;&#x3059;&#x308B;&#x3002;
+</li></ul>
+<!--
+少しややこしいが，「電源を入れてOSが起動するまでの手順」を知る機会でもある。
+第II部でも，上記と同じように「ブートストラップローダを置き換えることで，OSのない自由な環境で自作プログラムを実行」する。
+-->
+
+
+<p>&#x5B9F;&#x969B;&#x306E;&#x5B9F;&#x9A13;&#x624B;&#x9806;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x308B;&#x3002;</p><ol><li>&#x300C;VRAM&#x306B;&#x76F4;&#x63A5;&#x66F8;&#x304D;&#x8FBC;&#x3080;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x300D;&#x3092;&#x8A18;&#x8FF0;&#x3057;&#xFF0C;&#x30A2;&#x30BB;&#x30F3;&#x30D6;&#x30EB;&#x3059;&#x308B;&#x3002;
+&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x3092;&#x914D;&#x4ED8;&#x3059;&#x308B;&#x306E;&#x3067;&#xFF0C;&#x305D;&#x308C;&#x3092;&#x6539;&#x9020;&#x3059;&#x308C;&#x3070;&#x3088;&#x3044;&#x3002;
+&#x300C;&#x30D6;&#x30FC;&#x30C8;&#x30B9;&#x30C8;&#x30E9;&#x30C3;&#x30D7;&#x30ED;&#x30FC;&#x30C0;&#x306E;&#x3075;&#x308A;&#x300D;&#x3092;&#x3055;&#x305B;&#x308B;&#x305F;&#x3081;&#xFF0C;OS&#x4E0A;&#x3067;&#x52D5;&#x304F;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3068;&#x306F;&#x3061;&#x304C;&#x3063;&#x305F;&#x5236;&#x7D04;&#x304C;&#x3044;&#x304F;&#x3064;&#x304B;&#x3042;&#x308B;&#x3002;
+</li>
+<li>&#x4E0A;&#x3067;&#x5F97;&#x3089;&#x308C;&#x305F;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x300C;&#x30CF;&#x30FC;&#x30C9;&#x30C7;&#x30A3;&#x30B9;&#x30AF;&#x306E;&#x4E2D;&#x8EAB;&#x300D;&#x3068;&#x3057;&#x3066;&#x6307;&#x5B9A;&#x3057;&#x3066;&#xFF0C;PC&#x30A8;&#x30DF;&#x30E5;&#x30EC;&#x30FC;&#x30BF;&#x3067;&#x3042;&#x308B; <a href="http://bochs.sourceforge.net" target="_blank">bochs</a> &#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x3002;
+</li></ol>
+<h2 id="&#x6E96;&#x5099;-&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3068;bochs&#x8A2D;&#x5B9A;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x914D;&#x4ED8;">&#x6E96;&#x5099;: &#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3068;bochs&#x8A2D;&#x5B9A;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x914D;&#x4ED8;</h2><p>upstream&#x30EA;&#x30DD;&#x30B8;&#x30C8;&#x30EA; (<a href="https://github.com/kut-info-pl2/base-q1-i386" target="_blank">https://github.com/kut-info-pl2/base-q1-i386</a>) &#x304B;&#x3089;pull&#x3057;&#x306A;&#x3055;&#x3044;&#x3002;
+vram/bochsrc &#x53CA;&#x3073; vram/vram.s &#x304C;&#x30EA;&#x30DD;&#x30B8;&#x30C8;&#x30EA;&#x306B;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x308B;&#x3002;</p><ol><li>&#x30C1;&#x30FC;&#x30E0;&#x4E2D;&#x306E;&#x4E00;&#x4EBA;&#x304C;upstream&#x304B;&#x3089;&#x81EA;&#x5206;&#x306E;&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x30EA;&#x30DD;&#x30B8;&#x30C8;&#x30EA;&#x306B;pull&#x3057;&#xFF0C;&#x5171;&#x6709;&#x30EA;&#x30DD;&#x30B8;&#x30C8;&#x30EA;&#x306B;push&#x3059;&#x308B;&#x3002;
+<ul><li>upstream&#x306E;&#x8A2D;&#x5B9A;&#x304C;&#x307E;&#x3060;&#x306E;&#x5834;&#x5408;&#x306F;&#x4EE5;&#x4E0B;&#x3092;&#x5B9F;&#x884C;
+&#xFF08;&#x767B;&#x9332;&#x6E08;&#x307F;&#x306E;URL&#x3092;&#x5909;&#x66F4;&#x3057;&#x305F;&#x3044;&#x5834;&#x5408;&#x306F; remote add &#x306E;&#x4EE3;&#x308F;&#x308A;&#x306B; remote set-url &#x3092;&#x5B9F;&#x884C;&#xFF09;&#x3002;
+<pre><code>$ git remote add upstream https://&#x30E6;&#x30FC;&#x30B6;&#x540D;@github.com/kut-info-pl2/base-q1-i386.git</code></pre>* &#x4EE5;&#x4E0B;&#x3092;&#x5B9F;&#x884C;&#x3002;
+<pre><code>$ git pull                    -- &#x5FF5;&#x306E;&#x305F;&#x3081;origin&#x3068;&#x540C;&#x671F;
+$ git pull upstream master
+$ git push                    -- origin&#x306B;push</code></pre>
+
+</li></ul>
+</li>
+<li>&#x305D;&#x306E;&#x5F8C;&#xFF0C;&#x6B8B;&#x308A;&#x306E;&#x30E1;&#x30F3;&#x30D0;&#x30FC;&#x304C;origin&#x304B;&#x3089;pull&#x3059;&#x308B;&#x3002;
+<pre><code>$ git pull</code></pre>
+
+
+
+
+</li></ol>
+<h2 id="bochs&#x306E;&#x8D77;&#x52D5;">bochs&#x306E;&#x8D77;&#x52D5;</h2><p>vram&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x3092;&#x30AB;&#x30EC;&#x30F3;&#x30C8;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x3068;&#x3057;&#x3066;&#xFF0C;&#x4EE5;&#x4E0B;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x3002;</p><pre><code>$ ~y-takata/bochs</code></pre>
+<p>bochs &#x304C;&#x30AB;&#x30EC;&#x30F3;&#x30C8;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306E;&#x8A2D;&#x5B9A;&#x30D5;&#x30A1;&#x30A4;&#x30EB; bochsrc &#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#xFF0C;&#x30D1;&#x30BD;&#x30B3;&#x30F3;&#x6A21;&#x5023;&#x753B;&#x9762;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;&#x3002;
+&#x305D;&#x306E;&#x5F8C;&#xFF0C;&#x300C;&#x8D77;&#x52D5;&#x30C7;&#x30D0;&#x30A4;&#x30B9;&#x304C;&#x63A5;&#x7D9A;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x300D;&#x3068;&#x3044;&#x3046;&#x30A8;&#x30E9;&#x30FC;&#x3067;&#x505C;&#x6B62;&#x3059;&#x308B;&#x306E;&#x3067;&#xFF0C;Quit &#x3092;&#x62BC;&#x3057;&#x3066;&#x7D42;&#x4E86;&#x3059;&#x308B;&#x3002;</p><h2 id="&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x306E;&#x5B9F;&#x884C;">&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x306E;&#x5B9F;&#x884C;</h2><ol><li><p>&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x30A2;&#x30BB;&#x30F3;&#x30D6;&#x30EB;&#x3092;&#x884C;&#x3046;&#x3002;</p><pre><code>$ nasm -fbin vram.s    -- &#x30D5;&#x30A1;&#x30A4;&#x30EB;vram&#x304C;&#x751F;&#x6210;&#x3055;&#x308C;&#x308B;</code></pre>
+<p>vram &#x3068;&#x3044;&#x3046;&#x540D;&#x524D;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x751F;&#x6210;&#x3055;&#x308C;&#x308B;&#x3002;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3; <code>-fbin</code> &#x306F;&#xFF0C;&#x300C;.o &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3067;&#x306F;&#x306A;&#x304F;&#x6A5F;&#x68B0;&#x8A9E;&#x306E;&#x30D0;&#x30A4;&#x30C8;&#x5217;&#x3060;&#x3051;&#x304B;&#x3089;&#x306A;&#x308B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x51FA;&#x529B;&#x305B;&#x3088;&#x300D;&#x3068;&#x3044;&#x3046;&#x610F;&#x5473;&#x3002;</p></li>
+<li><p>&#x30A8;&#x30C7;&#x30A3;&#x30BF;&#x3067; bochsrc &#x306E;&#x5148;&#x982D;&#x884C;&#x306E; <code>#</code> &#x3092;&#x53D6;&#x308A;&#x9664;&#x304F;&#x3002;</p><pre><code>ata0-master: type=disk, path=vram, cylinders=1, heads=1, spt=1
+boot: disk</code></pre>
+<p>&#x300C;&#x30AB;&#x30EC;&#x30F3;&#x30C8;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306E;vram&#x3068;&#x3044;&#x3046;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x30CF;&#x30FC;&#x30C9;&#x30C7;&#x30A3;&#x30B9;&#x30AF;&#x3068;&#x601D;&#x3044;&#x306A;&#x3055;&#x3044;&#x300D;&#x3068;&#x3044;&#x3046;&#x8A2D;&#x5B9A;&#x3002;</p></li></ol>
+<p>&#x3053;&#x306E;&#x72B6;&#x614B;&#x3067; bochs &#x3092;&#x8D77;&#x52D5;&#x3059;&#x308B;&#x3068;&#xFF0C;vram.s &#x306B;&#x66F8;&#x304B;&#x308C;&#x305F;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x304C;&#x30D6;&#x30FC;&#x30C8;&#x30B9;&#x30C8;&#x30E9;&#x30C3;&#x30D7;&#x30ED;&#x30FC;&#x30C0;&#x306E;&#x4EE3;&#x308F;&#x308A;&#x306B;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&#x3002;</p><ul><li>&#x53C2;&#x8003;: <a href="https://lms.kochi-tech.ac.jp/pluginfile.php/35529/mod_resource/content/0/hdd.pdf" target="_blank">&#x30CF;&#x30FC;&#x30C9;&#x30C7;&#x30A3;&#x30B9;&#x30AF;&#x306E;&#x69CB;&#x9020; (&#x56F3;)</a>
+<ul><li>&#x4E0A;&#x8A18;&#x306E;bochsrc&#x306F;&#xFF0C;&#x300C;&#x30D5;&#x30A1;&#x30A4;&#x30EB; vram &#x3092;&#x300E;&#x30B7;&#x30EA;&#x30F3;&#x30C0;&#x6570;1, &#x30D8;&#x30C3;&#x30C9;&#x6570;1, &#x30C8;&#x30E9;&#x30C3;&#x30AF;&#x5F53;&#x305F;&#x308A;&#x306E;&#x30BB;&#x30AF;&#x30BF;&#x6570;1&#x306E;&#xFF08;&#x3064;&#x307E;&#x308A;&#x305F;&#x3060;1&#x500B;&#x306E;&#x30BB;&#x30AF;&#x30BF;&#x304B;&#x3089;&#x306A;&#x308B;&#xFF09;&#x30CF;&#x30FC;&#x30C9;&#x30C7;&#x30A3;&#x30B9;&#x30AF;&#x300F;&#x3068;&#x601D;&#x3044;&#x306A;&#x3055;&#x3044;&#x300D;&#x3068;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x308B;&#x3002;
+</li>
+<li>&#x300C;&#x30CF;&#x30FC;&#x30C9;&#x30C7;&#x30A3;&#x30B9;&#x30AF;&#x300D;&#x3068;&#x3057;&#x3066;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x5927;&#x304D;&#x3055;&#x304C;&#x300C;&#x7DCF;&#x30BB;&#x30AF;&#x30BF;&#x6570; &#xD7; 512&#x30D0;&#x30A4;&#x30C8;&#x300D;&#x306B;&#x4E00;&#x81F4;&#x3057;&#x306A;&#x3044;&#x3068;&#x30A8;&#x30E9;&#x30FC;&#x306B;&#x306A;&#x308B;&#x3002;
+</li></ul>
+</li></ul>
+<h2 id="&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x306E;&#x4E2D;&#x8EAB;">&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x306E;&#x4E2D;&#x8EAB;</h2><p>vram.s</p><pre><code class="lang-x86asm"><span class="hljs-comment">; &#x4E0B;&#x8A18;&#x306B;&#x63B2;&#x8F09;&#x306E;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3092;&#x57FA;&#x306B;&#x4F5C;&#x6210;&#x3057;&#x305F;:</span>
+<span class="hljs-comment">; http://d.hatena.ne.jp/rudeboyjet/20080108/p1</span>
+<span class="hljs-comment">; &#x30C6;&#x30AD;&#x30B9;&#x30C8;VRAM&#x306E;&#x4F7F;&#x3044;&#x65B9;&#x306F;&#x4E0B;&#x8A18;&#x3092;&#x53C2;&#x7167;:</span>
+<span class="hljs-comment">; https://en.wikipedia.org/wiki/VGA-compatible_text_mode</span>
+
+        <span class="hljs-comment">; &#x30D6;&#x30FC;&#x30C8;&#x30B9;&#x30C8;&#x30E9;&#x30C3;&#x30D7;&#x30B3;&#x30FC;&#x30C9;&#x306F; Real-address mode &#x3067;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&#x306E;&#x3067;,</span>
+        <span class="hljs-comment">; 32&#x30D3;&#x30C3;&#x30C8;&#x306E;&#x756A;&#x5730;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x3066;&#x3082;&#x4E0B;&#x4F4D;16&#x30D3;&#x30C3;&#x30C8;&#x306E;&#x307F;&#x4F7F;&#x7528;&#x3055;&#x308C;&#x308B;.</span>
+
+        <span class="hljs-comment">; AX, CX, DX&#x306F;&#x756A;&#x5730;&#x306E;&#x6307;&#x5B9A;&#x306B;&#x4F7F;&#x3048;&#x306A;&#x3044; (EAX, ECX, EDX&#x306F;&#x4F7F;&#x3048;&#x308B;).</span>
+
+        org     <span class="hljs-number">0x0</span>             <span class="hljs-comment">; &#x958B;&#x59CB;&#x756A;&#x5730;</span>
+        <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">ax</span>, <span class="hljs-number">0xB800</span>
+        <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">ds</span>, <span class="hljs-built_in">ax</span>          <span class="hljs-comment">; &#x30BB;&#x30B0;&#x30E1;&#x30F3;&#x30C8;&#x30EC;&#x30B8;&#x30B9;&#x30BF;&#x306B;VRAM&#x306E;&#x756A;&#x5730;&#x3092;&#x4EE3;&#x5165;</span>
+
+        <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">bx</span>, <span class="hljs-number">0</span>           <span class="hljs-comment">; VRAM&#x4E0A;&#x306E;&#x756A;&#x5730;</span>
+        <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">cx</span>, <span class="hljs-number">25</span>          <span class="hljs-comment">; &#x30EB;&#x30FC;&#x30D7;&#x56DE;&#x6570;</span>
+        <span class="hljs-keyword">mov</span>     <span class="hljs-built_in">al</span>, <span class="hljs-string">&apos;A&apos;</span>         <span class="hljs-comment">; &#x8868;&#x793A;&#x3059;&#x308B;&#x6587;&#x5B57;</span>
+        <span class="hljs-keyword">mov</span>     <span class="hljs-number">ah</span>, <span class="hljs-number">0x1c</span>        <span class="hljs-comment">; &#x8868;&#x793A;&#x5C5E;&#x6027; (&#x9752;&#x80CC;&#x666F;, &#x8D64;&#x5B57;)</span>
+<span class="hljs-symbol">loop0:</span>
+        <span class="hljs-keyword">mov</span>     [<span class="hljs-built_in">bx</span>], <span class="hljs-built_in">ax</span>        <span class="hljs-comment">; &#x6587;&#x5B57;&#x3068;&#x5C5E;&#x6027;&#x3092;VRAM&#x306B;&#x66F8;&#x304D;&#x8FBC;&#x3080;</span>
+        <span class="hljs-keyword">add</span>     <span class="hljs-built_in">bx</span>, <span class="hljs-number">2</span> * <span class="hljs-number">82</span>      <span class="hljs-comment">; 82&#x6587;&#x5B57;&#x5F8C;&#x308D; (= &#x53F3;&#x4E0B;)</span>
+        <span class="hljs-keyword">inc</span>     <span class="hljs-built_in">al</span>              <span class="hljs-comment">; &#x6B21;&#x306E;&#x6587;&#x5B57;</span>
+        <span class="hljs-keyword">dec</span>     <span class="hljs-built_in">cx</span>              <span class="hljs-comment">; &#x6B8B;&#x308A;&#x56DE;&#x6570;&#x3092;&#x6E1B;&#x3089;&#x3059;</span>
+        <span class="hljs-keyword">jnz</span>     loop0           <span class="hljs-comment">; 0&#x3067;&#x306A;&#x3051;&#x308C;&#x3070;&#x30EB;&#x30FC;&#x30D7;</span>
+
+        <span class="hljs-keyword">hlt</span>                     <span class="hljs-comment">; HALT (CPU&#x3092;&#x505C;&#x6B62;)</span>
+
+        <span class="hljs-built_in">times</span>   <span class="hljs-number">510</span>-($-$$) <span class="hljs-built_in">db</span> <span class="hljs-number">0</span> <span class="hljs-comment">; &#x30BB;&#x30AF;&#x30BF;&#x672B;&#x5C3E;&#x307E;&#x3067;0&#x3067;&#x57CB;&#x3081;&#x308B; ($$&#x306F;&#x958B;&#x59CB;&#x756A;&#x5730;)</span>
+        <span class="hljs-built_in">db</span>      <span class="hljs-number">0x55</span>, <span class="hljs-number">0xaa</span>      <span class="hljs-comment">; Boot Signature</span></code></pre>
+<ul><li>section&#x6307;&#x5B9A;&#x306F;&#x5FC5;&#x8981;&#x306A;&#x3044;&#xFF08;&#x6307;&#x5B9A;&#x3057;&#x3066;&#x3082;&#x7121;&#x610F;&#x5473;&#xFF09;&#x3002;
+</li>
+<li>ORG (origin) &#x306F;&#x6A5F;&#x68B0;&#x8A9E;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x306E;&#x958B;&#x59CB;&#x756A;&#x5730;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x7591;&#x4F3C;&#x547D;&#x4EE4;&#x3002;
+&#x30D6;&#x30FC;&#x30C8;&#x30B9;&#x30C8;&#x30E9;&#x30C3;&#x30D7;&#x30ED;&#x30FC;&#x30C0;&#x306F;&#x958B;&#x59CB;&#x756A;&#x5730;&#x304C; 0&#x3002;
+</li>
+<li><p>&#x30C6;&#x30AD;&#x30B9;&#x30C8;VRAM&#x306F; 0xb8000 &#x756A;&#x5730;&#x306B;&#x3042;&#x308B;&#x3002;1&#x753B;&#x9762; 80&#xD7;25 &#x6587;&#x5B57;&#x8868;&#x793A;&#x3067;&#xFF0C;1&#x6587;&#x5B57;&#x5F53;&#x305F;&#x308A;2&#x30D0;&#x30A4;&#x30C8;&#x3067;&#x8868;&#x3055;&#x308C;&#x308B;&#xFF08;4000&#x30D0;&#x30A4;&#x30C8;&#x3067;1&#x753B;&#x9762;&#x3092;&#x8868;&#x3059;&#xFF09;&#x3002;</p><ul><li>&#x753B;&#x9762;&#x5DE6;&#x4E0A;&#x9685;&#x306E;&#x6587;&#x5B57;&#x304C; 0xb8000 &#x756A;&#x5730;&#x306B;&#x683C;&#x7D0D;&#x3055;&#x308C;&#x308B;&#x3002;&#x53F3;&#x96A3;&#x306E;&#x6587;&#x5B57;&#x306F; 2 &#x756A;&#x5730;&#x5F8C;&#x308D;&#x306B;&#x683C;&#x7D0D;&#x3055;&#x308C;&#x308B;&#x3002;&#x884C;&#x306E;&#x53F3;&#x7AEF;&#x306E;&#x6587;&#x5B57;&#x306E;2&#x756A;&#x5730;&#x5F8C;&#x308D;&#x306B;&#xFF0C;&#x6B21;&#x306E;&#x884C;&#x306E;&#x5DE6;&#x7AEF;&#x306E;&#x6587;&#x5B57;&#x304C;&#x683C;&#x7D0D;&#x3055;&#x308C;&#x308B;&#x3002;&#x540C;&#x3058;&#x5217;&#x306E;1&#x884C;&#x4E0B;&#x306E;&#x6587;&#x5B57;&#x306F; 160 &#x756A;&#x5730;&#x5F8C;&#x308D;&#x306B;&#x683C;&#x7D0D;&#x3055;&#x308C;&#x308B;&#x3002;
+</li>
+<li>&#x5076;&#x6570;&#x756A;&#x5730;&#x306B;&#x6587;&#x5B57;&#x30B3;&#x30FC;&#x30C9;&#xFF0C;&#x5947;&#x6570;&#x756A;&#x5730;&#x306B;<strong>&#x8868;&#x793A;&#x5C5E;&#x6027;</strong>&#xFF08;&#x6587;&#x5B57;&#x8272;&#xFF0C;&#x80CC;&#x666F;&#x8272;&#x306A;&#x3069;&#xFF09;&#x3092;&#x683C;&#x7D0D;&#x3059;&#x308B;&#x3002;
+</li>
+<li>&#xFF08;&#x8A73;&#x3057;&#x304F;&#x306F;&#xFF0C;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x4E2D;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306B;&#x66F8;&#x3044;&#x305F;URL&#x306A;&#x3069;&#x3092;&#x53C2;&#x7167;&#x3002;&#xFF09;
+</li></ul>
+</li>
+<li><p>&#x53C2;&#x8003;: &#x8D77;&#x52D5;&#x76F4;&#x5F8C;&#x306E; i386 &#x306F; Real-address mode &#x3068;&#x3044;&#x3046;&#x72B6;&#x614B;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x3002;</p><ul><li>&#x756A;&#x5730;&#x306F;20&#x30D3;&#x30C3;&#x30C8;&#x3067;&#x3042;&#x308A;&#xFF0C;&#x3053;&#x308C;&#x3092;16&#x30D3;&#x30C3;&#x30C8;&#x306E;&#x30BB;&#x30B0;&#x30E1;&#x30F3;&#x30C8;&#x30EC;&#x30B8;&#x30B9;&#x30BF; ds &#x3068;16&#x30D3;&#x30C3;&#x30C8;&#x306E;&#x30BB;&#x30B0;&#x30E1;&#x30F3;&#x30C8;&#x5185;&#x30AA;&#x30D5;&#x30BB;&#x30C3;&#x30C8;&#x3068;&#x3067;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x3002;
+</li>
+<li>ds = 0xb800&#xFF0C;bx = 0xa4 &#x306E;&#x3068;&#x304D;&#xFF0C;<code>mov [bx], ax</code> &#x306F; 0xb80a4 &#x756A;&#x5730;&#x306B;AX&#x306E;&#x5024;&#x3092;&#x66F8;&#x304D;&#x8FBC;&#x3080;&#x3002;
+&#x3064;&#x307E;&#x308A;&#xFF0C;&#x300C;ds&#x306E;16&#x500D;&#xFF08;4&#x30D3;&#x30C3;&#x30C8;&#x5DE6;&#x30B7;&#x30D5;&#x30C8;&#xFF09;+ &#x30BB;&#x30B0;&#x30E1;&#x30F3;&#x30C8;&#x5185;&#x30AA;&#x30D5;&#x30BB;&#x30C3;&#x30C8;&#x300D;&#x304C;&#x5B9F;&#x969B;&#x306B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3055;&#x308C;&#x308B;&#x756A;&#x5730;&#x306B;&#x306A;&#x308B;&#x3002;
+</li>
+<li><code>mov [ebx], ax</code> &#x306E;&#x3088;&#x3046;&#x306B;32&#x30D3;&#x30C3;&#x30C8;&#x30EC;&#x30B8;&#x30B9;&#x30BF;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3082;&#xFF0C;&#x4E0B;&#x4F4D;16&#x30D3;&#x30C3;&#x30C8;&#x306E;&#x307F;&#x4F7F;&#x7528;&#x3055;&#x308C;&#x308B;&#x3002;
+</li>
+<li>&#xFF08;Real-address mode&#x306B;&#x3064;&#x3044;&#x3066;&#x8A73;&#x3057;&#x304F;&#x306F;&#xFF0C;<a href="http://www.intel.co.jp/content/www/jp/ja/processors/architectures-software-developer-manuals.html" target="_blank">i386 &#x306E;&#x30DE;&#x30CB;&#x30E5;&#x30A2;&#x30EB;</a>&#x3092;&#x53C2;&#x7167;&#x3002;&#xFF09;
+</li></ul>
+</li>
+<li><p>HLT (halt) &#x306F;CPU&#x3092;&#x505C;&#x6B62;&#x3059;&#x308B;&#x547D;&#x4EE4;&#xFF08;OS&#x7BA1;&#x7406;&#x4E0B;&#x3067;&#x306F;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x306A;&#x3044;&#x304C;&#xFF0C;OS&#x8D77;&#x52D5;&#x524D;&#x306A;&#x3089;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x308B;&#xFF09;&#x3002;</p></li>
+<li>&#x30D6;&#x30FC;&#x30C8;&#x30B9;&#x30C8;&#x30E9;&#x30C3;&#x30D7;&#x30ED;&#x30FC;&#x30C0;&#x306F;&#x30CF;&#x30FC;&#x30C9;&#x30C7;&#x30A3;&#x30B9;&#x30AF;&#x306E;&#x7B2C;0&#x30BB;&#x30AF;&#x30BF;&#xFF08;MBR; Master Boot Record &#x3068;&#x8A00;&#x3046;&#xFF09;&#x306B;&#x683C;&#x7D0D;&#x3057;&#x306A;&#x3051;&#x308C;&#x3070;&#x306A;&#x3089;&#x306A;&#x3044;&#x3002;MBR&#x306E;&#x672B;&#x5C3E;&#x306E;2&#x30D0;&#x30A4;&#x30C8;&#x306F; 0x55, 0xaa &#x3067;&#x306A;&#x3051;&#x308C;&#x3070;&#x306A;&#x3089;&#x306A;&#x3044;&#x3002;
+<ul><li>&#x300C;&#x7B2C;0&#x30BB;&#x30AF;&#x30BF;&#x3092;&#x3042;&#x308B;&#x756A;&#x5730;&#x306B;&#x30B3;&#x30D4;&#x30FC;&#x3057;&#xFF0C;&#x7B2C;510&#x301C;511&#x30D0;&#x30A4;&#x30C8;&#x304C; 0x55, 0xaa &#x3067;&#x3042;&#x308B;&#x3053;&#x3068;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x305F;&#x5F8C;&#xFF0C;&#x7B2C;0&#x30D0;&#x30A4;&#x30C8;&#x306B;&#x30B8;&#x30E3;&#x30F3;&#x30D7;&#x3059;&#x308B;&#x300D;&#x3068;&#x3044;&#x3046;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x304C;&#xFF0C;&#x30DE;&#x30B6;&#x30FC;&#x30DC;&#x30FC;&#x30C9;&#x4E0A;&#x306E;ROM&#x306B;&#x683C;&#x7D0D;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3002;
+</li></ul>
+</li></ul>
+<h2 id="&#x7DF4;&#x7FD2;&#x554F;&#x984C;">&#x7DF4;&#x7FD2;&#x554F;&#x984C;</h2><p><strong>&#x6F14;&#x7FD2;1.9-1</strong>&#x3000;vram.s &#x3092;&#x6539;&#x9020;&#x3057;&#xFF0C;bochs &#x306E;&#x753B;&#x9762;&#x306E;&#x4E0A;&#x306B;&#x597D;&#x304D;&#x306A;&#x6587;&#x5B57;&#x5217;&#x3084;&#x6A21;&#x69D8;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3092;&#x4F5C;&#x308A;&#x306A;&#x3055;&#x3044;&#x3002;
+&#x82B8;&#x8853;&#x6027;&#x3084;&#x6280;&#x8853;&#x7684;&#x9AD8;&#x5EA6;&#x3055;&#x306E;&#x89B3;&#x70B9;&#x304B;&#x3089;&#xFF0C;&#x3069;&#x306E;&#x3088;&#x3046;&#x306A;&#x6A21;&#x69D8;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;&#x3068;&#x3088;&#x3044;&#x3068;&#x601D;&#x3046;&#x304B;&#xFF0C;&#x30C1;&#x30FC;&#x30E0;&#x3067;&#x76F8;&#x8AC7;&#x3057;&#x3066;&#x6C7A;&#x3081;&#x306A;&#x3055;&#x3044;&#x3002;</p><p>&#x4EE5;&#x4E0B;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x5171;&#x6709;&#x30EA;&#x30DD;&#x30B8;&#x30C8;&#x30EA;&#x306B;push&#x3057;&#x306A;&#x3055;&#x3044;&#x3002;</p><ul><li>&#x6539;&#x9020;&#x5F8C;&#x306E; vram.s&#xFF08;&#x8907;&#x6570;&#x306E;&#x30BD;&#x30FC;&#x30B9;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306B;&#x5206;&#x5272;&#x3057;&#x305F;&#x5834;&#x5408;&#x306F;&#xFF0C;&#x5B9F;&#x884C;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x308B;&#x306E;&#x306B;&#x5FC5;&#x8981;&#x306A;&#x30BD;&#x30FC;&#x30B9;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3059;&#x3079;&#x3066;&#xFF09;
+</li>
+<li>Makefile
+</li>
+<li>bochsrc&#xFF08;make &#x3092;&#x5B9F;&#x884C;&#x3057;&#x3066; bochs &#x3092;&#x8D77;&#x52D5;&#x3059;&#x308B;&#x3060;&#x3051;&#x3067;&#xFF0C;&#x6210;&#x679C;&#x7269;&#x3067;&#x3042;&#x308B;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&#x3088;&#x3046;&#x306B;&#x3059;&#x308B;&#x3053;&#x3068;&#xFF09;
+</li>
+<li>&#x5B9F;&#x884C;&#x7D50;&#x679C;&#x306E;<strong>&#x30B9;&#x30AF;&#x30EA;&#x30FC;&#x30F3;&#x30B7;&#x30E7;&#x30C3;&#x30C8;</strong>&#x753B;&#x50CF; Screenshot.png&#xFF08;&#x5148;&#x982D;&#x5927;&#x6587;&#x5B57;&#xFF09;
+</li></ul>
+<p>&#x30B9;&#x30AF;&#x30EA;&#x30FC;&#x30F3;&#x30B7;&#x30E7;&#x30C3;&#x30C8;&#x306F;&#x300C;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x300D;&#x30E1;&#x30CB;&#x30E5;&#x30FC;&#x306E;&#x300C;&#x30A2;&#x30AF;&#x30BB;&#x30B5;&#x30EA;&#x300D;&#x306E;&#x4E2D;&#x306E;&#x300C;&#x30B9;&#x30AF;&#x30EA;&#x30FC;&#x30F3;&#x30B7;&#x30E7;&#x30C3;&#x30C8;&#x306E;&#x53D6;&#x5F97;&#x300D;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x5F97;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x308B;&#x3002;</p><ul><li>&#x300C;&#x73FE;&#x5728;&#x306E;&#x30A6;&#x30A3;&#x30F3;&#x30C9;&#x30A6;&#x300D;&#x3092;&#x9078;&#x3076; &#x2192; &#x300C;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x307E;&#x3067;&#x306E;&#x5F85;&#x3061;&#x6642;&#x9593;&#x300D;&#x3092;0&#x3088;&#x308A;&#x5927;&#x304D;&#x3044;&#x5024;&#x306B;&#x3059;&#x308B; &#x2192;&#x300C;&#x30B9;&#x30AF;&#x30EA;&#x30FC;&#x30F3;&#x30B7;&#x30E7;&#x30C3;&#x30C8;&#x306E;&#x53D6;&#x5F97;&#x300D;&#x30DC;&#x30BF;&#x30F3;&#x3092;&#x62BC;&#x3059; &#x2192; &#x5F85;&#x3061;&#x6642;&#x9593;&#x304C;&#x904E;&#x304E;&#x308B;&#x524D;&#x306B;bochs&#x306E;&#x30A6;&#x30A3;&#x30F3;&#x30C9;&#x30A6;&#x3092;&#x9078;&#x629E;&#x3059;&#x308B;&#x3002;
+</li></ul>
+<p>&#x4F7F;&#x3063;&#x3066;&#x3088;&#x3044;&#x6A5F;&#x80FD;:</p><ul><li>&#x8868;&#x793A;&#x30E2;&#x30FC;&#x30C9;&#x306F;80&#xD7;25&#x6587;&#x5B57;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x8868;&#x793A;&#x30E2;&#x30FC;&#x30C9;&#x304B;&#x3089;&#x5909;&#x3048;&#x306A;&#x3044;&#x3053;&#x3068;&#x3002;
+</li>
+<li>BIOS (Basic I/O System) &#x306B;&#x3064;&#x3044;&#x3066;&#x81EA;&#x5206;&#x3067;&#x8ABF;&#x3079;&#x3066;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x306F;&#x69CB;&#x308F;&#x306A;&#x3044;&#x3002;
+</li>
+<li>&#x30ED;&#x30FC;&#x30C0;&#x3092;&#x81EA;&#x4F5C;&#x3057;&#x3066;&#xFF0C;512&#x30D0;&#x30A4;&#x30C8;&#x3092;&#x8D85;&#x3048;&#x308B;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3092;&#x30ED;&#x30FC;&#x30C9;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x3066;&#x3082;&#x3088;&#x3044;&#x3002;
+</li>
+<li>&#x300C;&#x8868;&#x793A;&#x5185;&#x5BB9;&#x3092;&#x3060;&#x3093;&#x3060;&#x3093;&#x5909;&#x3048;&#x308B;&#x300D;&#x3053;&#x3068;&#x306B;&#x3088;&#x3063;&#x3066;&#x30A2;&#x30CB;&#x30E1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x3082;&#x3088;&#x3044;&#x3002;
+&#x3042;&#x308B;&#x753B;&#x9762;&#x3092;&#x63CF;&#x3044;&#x3066;&#x304B;&#x3089;&#x6B21;&#x306E;&#x753B;&#x9762;&#x306B;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x308B;&#x307E;&#x3067;&#x306E;&#x9593;&#xFF0C;&#x5F85;&#x3061;&#x6642;&#x9593;&#x304C;&#x5FC5;&#x8981;&#x3060;&#x304C;&#xFF0C;&#x4F8B;&#x3048;&#x3070;&#x7A7A;&#x30EB;&#x30FC;&#x30D7;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x306A;&#x3069;&#x3057;&#x3066;&#x6642;&#x9593;&#x3092;&#x6D88;&#x8CBB;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x3059;&#x308C;&#x3070;&#x3088;&#x3044;&#x3002;
+&#x5185;&#x8535;&#x30BF;&#x30A4;&#x30DE;&#x30FC;&#x306B;&#x3064;&#x3044;&#x3066;&#x8ABF;&#x3079;&#x3066;&#x305D;&#x308C;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3082;&#x3088;&#x3044;&#x3002;
+</li></ul>
+<p>&#xFF08;&#x88DC;&#x8DB3;&#xFF09;&#x8907;&#x6570;&#x4EBA;&#x304C; bochsrc &#x3084; vram.s &#x3092;&#x7DE8;&#x96C6;&#x3059;&#x308B;&#x3068;&#x885D;&#x7A81;&#x304C;&#x8D77;&#x3053;&#x308B;&#x306E;&#x3067;&#x6CE8;&#x610F;&#x3002;
+&#x81EA;&#x5206;&#x306E;&#x5909;&#x66F4;&#x3092;&#x53D6;&#x308A;&#x6D88;&#x3057;&#x305F;&#x3051;&#x308C;&#x3070;&#xFF0C;<code>git checkout &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x540D;</code> &#x3092;&#x5B9F;&#x884C;&#x3059;&#x308C;&#x3070;&#x3088;&#x3044;&#xFF08;&#x305D;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x6700;&#x7D42;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x306E;&#x72B6;&#x614B;&#x306B;&#x623B;&#x308B;&#xFF09;&#x3002;</p><p>&#xFF08;&#x88DC;&#x8DB3;&#xFF09;&#x8868;&#x793A;&#x5185;&#x5BB9;&#x3092;&#x6D88;&#x3057;&#x305F;&#x3044;&#x3068;&#x304D;&#x306F;&#xFF0C;&#x753B;&#x9762;&#x5168;&#x4F53;&#x3092;&#x7A7A;&#x767D;&#x6587;&#x5B57;&#x3067;&#x57CB;&#x3081;&#x308C;&#x3070;&#x3088;&#x3044;&#xFF08;&#x3042;&#x308B;&#x3044;&#x306F;BIOS&#x30B3;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3046;&#xFF09;&#x3002;</p><p>&#xFF08;&#x88DC;&#x8DB3;&#xFF09;&#x6587;&#x5B57;&#x30B3;&#x30FC;&#x30C9;0&#x301C;31&#x3084;127&#x301C;255&#x306B;&#x3082;&#x6587;&#x5B57;&#x304C;&#x5272;&#x308A;&#x5F53;&#x3066;&#x3089;&#x308C;&#x3066;&#x3044;&#x308B;&#xFF08;VRAM&#x306B;&#x3053;&#x308C;&#x3089;&#x306E;&#x5024;&#x3092;&#x66F8;&#x304D;&#x8FBC;&#x3080;&#x3068;&#x5272;&#x308A;&#x5F53;&#x3066;&#x3089;&#x308C;&#x3066;&#x3044;&#x308B;&#x6587;&#x5B57;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#xFF09;&#x3002;
+&#x3069;&#x306E;&#x3088;&#x3046;&#x306A;&#x6587;&#x5B57;&#x3092;&#x8868;&#x793A;&#x3067;&#x304D;&#x308B;&#x304B;&#x306F;&#x81EA;&#x5206;&#x3067;&#x8ABF;&#x3079;&#x306A;&#x3055;&#x3044;&#xFF08;&#x5B9F;&#x969B;&#x306B;&#x8868;&#x793A;&#x3055;&#x305B;&#x3066;&#x307F;&#x308B;&#x306E;&#x3082;&#x4E00;&#x624B;&#xFF09;&#x3002;</p>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="logical-op.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 8. 論理演算">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"9. VRAM直接書き込み","level":"2.9","depth":1,"previous":{"title":"8. 論理演算","level":"2.8","depth":1,"path":"part1/logical-op.md","ref":"part1/logical-op.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"情報学群実験第2","gitbook":"*"},"file":{"path":"part1/vram.md","mtime":"2016-10-28T01:32:34.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-28T08:16:58.511Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,10 @@
+# Emacs backup files
+*~
+#*
+.#*
+
+# Output of documentation
+_book
+
+# node.js local modules
+/node_modules
