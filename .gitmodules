@@ -1,3 +1,6 @@
 [submodule "blockly-for-led"]
 	path = blockly-for-led
 	url = https://github.com/kut-tktlab/blockly-for-led.git
+[submodule "blockly-processing"]
+	path = blockly-processing
+	url = https://github.com/kut-tktlab/blockly-processing.git
