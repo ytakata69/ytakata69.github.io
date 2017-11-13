@@ -1,0 +1,61 @@
+<html>
+<head>
+  <title>Decimal-to-Binary Fraction Converter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css"><!--
+  --></style>
+  <script type="text/javascript"><!--
+    function conv() {
+      var form = document.forms.mainForm;
+      var output = document.getElementById('output');
+      var val = "" + form._frac.value;
+      var len = val.length;
+
+      var outstr = "";
+      for (var i = 0; i < 9 + len; i++) { outstr += " "; }
+      outstr += "0\n";
+      for (var i = 0; i < 9 + len; i++) { outstr += " "; }
+      outstr += ".\n";
+
+      for (var i = 0; i < 25; i++) {
+        var dbl = "" + (Number(val) * 2);
+        while (dbl.length < len) { dbl = "0" + dbl; }
+        var dbli = dbl.length > len ? 1 : 0;
+        var dblf = dbl.substr(dbl.length - len);
+        outstr += "0." + s(val) + " x 2 = " + dbli + " ." + s(dblf) + "\n";
+        val = dblf;
+        if (Number(val) == 0) break;
+      }
+      output.innerText = outstr;
+    }
+
+    function s(str) { // suppress trailing zeros
+      var i;
+      for (i = str.length - 1; i > 0; i--) {
+        if (str.charAt(i) != "0") break;
+      }
+      var sx = str.substr(0, i + 1);
+      while (sx.length < str.length) { sx += " "; }
+      return sx;
+    }
+  //-->
+  </script>
+</head>
+<body>
+<h1>10進-2進 小数変換器</h1>
+<p>
+0以上1未満の10進数を入力してください。
+</p>
+
+<form name="mainForm" onsubmit="event.preventDefault(); conv()">
+  0.<input type="text" name="_frac" />
+  <input type="submit" value="Convert" />
+</form>
+
+<div>
+  <pre id="output">
+  </pre>
+</div>
+
+</body>
+</html>
