@@ -8,21 +8,25 @@
     function conv() {
       var form = document.forms.mainForm;
       var output = document.getElementById('output');
+      var radix = form._radix.value;
+      var toRadix = radix == 10 ? 2 : 10;
       var val = "" + form._frac.value;
       var len = val.length;
 
       var outstr = "";
-      for (var i = 0; i < 9 + len; i++) { outstr += " "; }
+      var spclen = len + 8 + ("" + toRadix).length;
+      for (var i = 0; i < spclen; i++) { outstr += " "; }
       outstr += "0\n";
-      for (var i = 0; i < 9 + len; i++) { outstr += " "; }
+      for (var i = 0; i < spclen; i++) { outstr += " "; }
       outstr += ".\n";
 
       for (var i = 0; i < 25; i++) {
-        var dbl = "" + (Number(val) * 2);
+        var dbl = (parseInt(val, radix) * toRadix).toString(radix);
         while (dbl.length < len) { dbl = "0" + dbl; }
-        var dbli = dbl.length > len ? 1 : 0;
+        var dbli = parseInt("0" + dbl.substr(0, dbl.length - len), radix);
         var dblf = dbl.substr(dbl.length - len);
-        outstr += "0." + s(val) + " x 2 = " + dbli + " ." + s(dblf) + "\n";
+        outstr += "0." + s(val) + " x " + toRadix + " = "
+                + dbli + " ." + s(dblf) + "\n";
         val = dblf;
         if (Number(val) == 0) break;
       }
@@ -43,11 +47,17 @@
 </head>
 <body>
 <h1>10進-2進 小数変換器</h1>
-<p>
-0以上1未満の10進数を入力してください。
-</p>
 
 <form name="mainForm" onsubmit="event.preventDefault(); conv()">
+  <p>
+  0以上1未満の
+  <select name="_radix">
+    <option value="10">10</option>
+    <option value="2">2</option>
+  </select>
+  進数を入力してください。
+  </p>
+
   0.<input type="text" name="_frac" />
   <input type="submit" value="Convert" />
 </form>
