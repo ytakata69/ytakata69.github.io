@@ -15,13 +15,11 @@
 
       var outstr = "";
       var spclen = len + 8 + ("" + toRadix).length;
-      for (var i = 0; i < spclen; i++) { outstr += " "; }
-      outstr += "0\n";
-      for (var i = 0; i < spclen; i++) { outstr += " "; }
-      outstr += ".\n";
+      outstr += times(" ", spclen) + "0\n";
+      outstr += times(" ", spclen) + ".\n";
 
       for (var i = 0; i < 25; i++) {
-        var dbl = (parseInt(val, radix) * toRadix).toString(radix);
+        var dbl = multiply(val, radix, toRadix);
         while (dbl.length < len) { dbl = "0" + dbl; }
         var dbli = parseInt("0" + dbl.substr(0, dbl.length - len), radix);
         var dblf = dbl.substr(dbl.length - len);
@@ -31,6 +29,28 @@
         if (Number(val) == 0) break;
       }
       output.innerText = outstr;
+    }
+
+    // return (parseInt(val, radix) * m).toString(radix)
+    function multiply(val, radix, m) {
+      var answer = "";
+      var carry = 0;
+      for (var i = val.length - 1; i >= 0; i--) {
+        var c = val.charAt(i);
+        var x = parseInt(c, radix) * m + carry;
+        answer = (x % radix).toString(radix) + answer;
+        carry = Math.floor(x / radix);
+      }
+      if (carry > 0) {
+        answer = carry.toString(radix) + answer;
+      }
+      return answer;
+    }
+
+    function times(c, n) { // repeat c n times
+      var s = "";
+      for (var i = 0; i < n; i++) { s += c; }
+      return s;
     }
 
     function s(str) { // suppress trailing zeros
