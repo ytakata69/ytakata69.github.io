@@ -306,7 +306,7 @@ Q00
 上記の例2の解を，SMTソルバを使って求めなさい。
 
 * ここではSMTソルバとして
-  [Z3](http://z3.codeplex.com/) を使用する。
+  [Z3](https://github.com/Z3Prover/z3) を使用する。
 
     ~~~
 $ z3 -smt2 ex2.smt
@@ -402,7 +402,7 @@ Q9
        \Rightarrow (x(i,j)\ne x(k,l))$
         * ただし，2項組間の${<},{\le}$はマスの前後関係。$B$はブロック番号。
 * 限量子を扱えるSMTソルバは少ない。扱えても計算時間が掛かる。
-    * Z3のほかに[CVC4](http://cvc4.cs.nyu.edu/web/)があるが，
+    * Z3のほかに[CVC4](https://cvc4.github.io)があるが，
       `sudoku-z3.smt`に対する結果は unknown。
     * Z3も，N=9の場合はtimeout ($>600$s;
       OS X 10.9.4/Intel Core i7 2.8GHz/16GB RAM)。
@@ -426,9 +426,9 @@ Q9
 * [SMT-COMP 2014](http://smtcomp.sourceforge.net/2014/)
     * [Paricipants](http://smtcomp.sourceforge.net/2014/participants.shtml)
       を見ると，どんなツールがあるか，どの背景理論に対応しているか，大ざっぱに把握できる。
-* [Z3](http://z3.codeplex.com/)
+* [Z3](https://github.com/Z3Prover/z3)
   　　 さまざまな背景理論に対応している強力なツール。
-* [CVC4](http://cvc4.cs.nyu.edu/web/)
+* [CVC4](https://cvc4.github.io)
   　こちらもさまざまな背景理論に対応している。
 * [SMTInterpol - an Interpolating SMT Solver
   ](http://ultimate.informatik.uni-freiburg.de/smtinterpol/)

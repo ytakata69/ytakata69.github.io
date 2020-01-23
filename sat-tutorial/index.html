@@ -11,6 +11,7 @@
 <body>
 <div id="header">
 <h1 class="title">SATソルバで遊ぼう</h1>
+<h3 class="date">Last modified: Wed Jul 20 21:57:04 JST 2016</h3>
 </div>
 <hr />
 <h2 id="sat問題">SAT問題</h2>
@@ -26,14 +27,14 @@
 </dl>
 <h3 id="例1">例1</h3>
 <ul>
-<li><span class="math"><em>V</em> = {<em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>, <em>x</em><sub>3</sub>}</span>上のCNF式 <span class="math"><em>F</em> = (<em>x</em><sub>1</sub> ∨ ¬ <em>x</em><sub>2</sub> ∨ ¬ <em>x</em><sub>3</sub>) ∧ (¬ <em>x</em><sub>1</sub> ∨ <em>x</em><sub>2</sub> ∨ ¬ <em>x</em><sub>3</sub>) ∧ (<em>x</em><sub>2</sub> ∨ <em>x</em><sub>3</sub>) ∧ (¬ <em>x</em><sub>1</sub> ∨ ¬ <em>x</em><sub>2</sub>)</span></li>
+<li><span class="math"><em>V</em> = {<em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>, <em>x</em><sub>3</sub>}</span>上のCNF式 <span class="math"><em>F</em> = (<em>x</em><sub>1</sub> ∨ ¬<em>x</em><sub>2</sub> ∨ ¬<em>x</em><sub>3</sub>) ∧ (¬<em>x</em><sub>1</sub> ∨ <em>x</em><sub>2</sub> ∨ ¬<em>x</em><sub>3</sub>) ∧ (<em>x</em><sub>2</sub> ∨ <em>x</em><sub>3</sub>) ∧ (¬<em>x</em><sub>1</sub> ∨ ¬<em>x</em><sub>2</sub>)</span></li>
 <li>解: <span class="math">(<em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>, <em>x</em><sub>3</sub>) = (0, 1, 0)</span>（別解: <span class="math">(0, 0, 1)</span>）</li>
 </ul>
 <h2 id="cnfの構文">CNFの構文</h2>
 <ul>
 <li>CNF式　　　　　　 <span class="math"><em>F</em> = <em>c</em><sub>1</sub> ∧ <em>c</em><sub>2</sub> ∧ … ∧ <em>c</em><sub><em>n</em></sub></span></li>
 <li>節(clause)　　　　<span class="math"><em>c</em><sub><em>i</em></sub> = <em>l</em><sub><em>i</em>1</sub> ∨ <em>l</em><sub><em>i</em>2</sub> ∨ … ∨ <em>l</em><sub><em>i</em><em>m</em><sub><em>i</em></sub></sub></span></li>
-<li>リテラル(literal)　 <span class="math"><em>l</em><sub><em>i</em><em>j</em></sub></span> は，<span class="math"><em>x</em><sub><em>k</em><sub><em>i</em><em>j</em></sub></sub></span> または <span class="math">¬ <em>x</em><sub><em>k</em><sub><em>i</em><em>j</em></sub></sub></span></li>
+<li>リテラル(literal)　 <span class="math"><em>l</em><sub><em>i</em><em>j</em></sub></span> は，<span class="math"><em>x</em><sub><em>k</em><sub><em>i</em><em>j</em></sub></sub></span> または <span class="math">¬<em>x</em><sub><em>k</em><sub><em>i</em><em>j</em></sub></sub></span></li>
 </ul>
 <h3 id="satソルバへの入力dimacs-cnf形式">SATソルバへの入力（DIMACS CNF形式）</h3>
 <pre><code>c
@@ -53,7 +54,7 @@ p cnf 3 4
 <li>それ以降: 1行に1個の節を記述。
 <ul>
 <li>変数は番号1〜<span class="math"><em>v</em></span>で表す。</li>
-<li><span class="math">¬ </span> は <span class="math"> − </span> で表す。</li>
+<li><span class="math">¬</span> は <span class="math"> − </span> で表す。</li>
 <li>各行末に 0 を記述（忘れやすいので注意）。</li>
 </ul></li>
 </ul>
@@ -104,11 +105,11 @@ PM |     |     |
 <h2 id="answer">Answer</h2>
 <p><span class="math"><em>x</em><sub><em>d</em>, <em>t</em>, <em>m</em></sub> = 1</span> ⇔ 時間枠<span class="math">(<em>d</em>, <em>t</em>)</span>を<span class="math"><em>m</em></span>が担当<br />　<span class="math"><em>d</em> ∈ {<em>S</em>, <em>M</em>}</span>, <span class="math"><em>t</em> ∈ {<em>A</em>, <em>P</em>}</span>, <span class="math"><em>m</em> ∈ {<em>た</em>, <em>よ</em>, <em>は</em>, <em>け</em>}</span></p>
 <ul>
-<li>制約a = <span class="math"><em>x</em><sub><em>d</em>, <em>t</em>, <em>た</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>t</em>, <em>よ</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>t</em>, <em>は</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>t</em>, <em>け</em></sub></span> for <span class="math">∀ <em>d</em>, <em>t</em></span>.</li>
-<li>制約b = <span class="math">¬ <em>x</em><sub><em>d</em>, <em>t</em>, <em>m</em></sub> ∨ ¬ <em>x</em><sub><em>d</em>ʹ, <em>t</em>ʹ, <em>m</em></sub></span> for <span class="math">∀ <em>d</em>, <em>d</em>ʹ, <em>t</em>, <em>t</em>ʹ, <em>m</em></span> such that <span class="math">(<em>d</em>, <em>t</em>) ≠ (<em>d</em>ʹ, <em>t</em>ʹ)</span>.</li>
-<li>制約c = <span class="math">¬ <em>x</em><sub><em>d</em>, <em>P</em>, <em>は</em></sub></span> for <span class="math">∀ <em>d</em></span>.</li>
-<li>制約d = <span class="math">¬ <em>x</em><sub><em>M</em>, <em>t</em>, <em>た</em></sub></span> for <span class="math">∀ <em>t</em></span>.</li>
-<li>制約e = <span class="math"><em>x</em><sub><em>d</em>, <em>t</em>, <em>m</em></sub> ∧ <em>x</em><sub><em>d</em>, <em>t</em>ʹ, <em>f</em></sub></span> for <span class="math">∀ <em>d</em>, ∃ <em>t</em>, <em>t</em>ʹ, ∃ <em>m</em> ∈ {<em>た</em>, <em>け</em>}, ∃ <em>f</em> ∈ {<em>よ</em>, <em>は</em>}</span><br />　　 = <span class="math">(<em>x</em><sub><em>d</em>, <em>A</em>, <em>た</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>A</em>, <em>け</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>P</em>, <em>た</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>P</em>, <em>け</em></sub>)</span> <span class="math"> ∧ (<em>x</em><sub><em>d</em>, <em>A</em>, <em>よ</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>A</em>, <em>は</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>P</em>, <em>よ</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>P</em>, <em>は</em></sub>)</span> for <span class="math">∀ <em>d</em></span>.</li>
+<li>制約a = <span class="math"><em>x</em><sub><em>d</em>, <em>t</em>, <em>た</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>t</em>, <em>よ</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>t</em>, <em>は</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>t</em>, <em>け</em></sub></span> for <span class="math">∀<em>d</em>, <em>t</em></span>.</li>
+<li>制約b = <span class="math">¬<em>x</em><sub><em>d</em>, <em>t</em>, <em>m</em></sub> ∨ ¬<em>x</em><sub><em>d</em>ʹ, <em>t</em>ʹ, <em>m</em></sub></span> for <span class="math">∀<em>d</em>, <em>d</em>ʹ, <em>t</em>, <em>t</em>ʹ, <em>m</em></span> such that <span class="math">(<em>d</em>, <em>t</em>) ≠ (<em>d</em>ʹ, <em>t</em>ʹ)</span>.</li>
+<li>制約c = <span class="math">¬<em>x</em><sub><em>d</em>, <em>P</em>, <em>は</em></sub></span> for <span class="math">∀<em>d</em></span>.</li>
+<li>制約d = <span class="math">¬<em>x</em><sub><em>M</em>, <em>t</em>, <em>た</em></sub></span> for <span class="math">∀<em>t</em></span>.</li>
+<li>制約e = <span class="math"><em>x</em><sub><em>d</em>, <em>t</em>, <em>m</em></sub> ∧ <em>x</em><sub><em>d</em>, <em>t</em>ʹ, <em>f</em></sub></span> for <span class="math">∀<em>d</em>, ∃<em>t</em>, <em>t</em>ʹ, ∃<em>m</em> ∈ {<em>た</em>, <em>け</em>}, ∃<em>f</em> ∈ {<em>よ</em>, <em>は</em>}</span><br />　　 = <span class="math">(<em>x</em><sub><em>d</em>, <em>A</em>, <em>た</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>A</em>, <em>け</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>P</em>, <em>た</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>P</em>, <em>け</em></sub>)</span> <span class="math"> ∧ (<em>x</em><sub><em>d</em>, <em>A</em>, <em>よ</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>A</em>, <em>は</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>P</em>, <em>よ</em></sub> ∨ <em>x</em><sub><em>d</em>, <em>P</em>, <em>は</em></sub>)</span> for <span class="math">∀<em>d</em></span>.</li>
 </ul>
 <p><span class="math"><em>S</em> = 1</span>, <span class="math"><em>M</em> = 2</span>, <span class="math"><em>A</em> = 1</span>, <span class="math"><em>P</em> = 2</span>, <span class="math"><em>た</em> = 1</span>, <span class="math"><em>よ</em> = 2</span>, <span class="math"><em>は</em> = 3</span>, <span class="math"><em>け</em> = 4</span>とし， <span class="math"><em>x</em><sub>111</sub></span>から<span class="math"><em>x</em><sub>224</sub></span>までを使用。</p>
 <ul>
@@ -134,9 +135,9 @@ AM |     |     |     |
 PM |     |     |     |
 ---+-----+-----+-----+</code></pre>
 <h2 id="ヒント">ヒント</h2>
-<p>Q1の制約b「高々1回担当」は，「2回担当することはない」と読み替えることができるので， <span class="math">¬ <em>x</em><sub><em>d</em>, <em>t</em>, <em>m</em></sub> ∨ ¬ <em>x</em><sub><em>d</em>ʹ, <em>t</em>ʹ, <em>m</em></sub></span> という式で表せた。</p>
-<p>同様に，「高々2回担当」は「3回担当することはない」と読み替えることができるので， <span class="math">¬ <em>x</em><sub><em>d</em>, <em>t</em>, <em>m</em></sub> ∨ ¬ <em>x</em><sub><em>d</em>ʹ, <em>t</em>ʹ, <em>m</em></sub> ∨ ¬ <em>x</em><sub><em>d</em>ʺ, <em>t</em>ʺ, <em>m</em></sub></span> と表すことができる。 ただし，これだと節の数が多くなり，CNFファイルを手で書く場合は少し困る （Q3のように自動生成するならほとんど問題ない）。</p>
-<p>「同日に2回担当することはない」という条件もあるので，「3回担当することはない」は 「3日とも担当することはない」と読み替えることができる。従って <span class="math">¬ <em>x</em><sub><em>S</em>, <em>t</em>, <em>m</em></sub> ∨ ¬ <em>x</em><sub><em>M</em>, <em>t</em>ʹ, <em>m</em></sub> ∨ ¬ <em>x</em><sub><em>T</em>, <em>t</em>ʺ, <em>m</em></sub></span> と表すことができる。 <span class="math"><em>t</em>, <em>t</em>ʹ, <em>t</em>ʺ</span>の組合せは8通りなので，手で書くとしても我慢できる範囲であろう。 「同日に2回担当することはない」は，別途，Q1の制約bと同様に記述する。</p>
+<p>Q1の制約b「高々1回担当」は，「2回担当することはない」と読み替えることができるので， <span class="math">¬<em>x</em><sub><em>d</em>, <em>t</em>, <em>m</em></sub> ∨ ¬<em>x</em><sub><em>d</em>ʹ, <em>t</em>ʹ, <em>m</em></sub></span> という式で表せた。</p>
+<p>同様に，「高々2回担当」は「3回担当することはない」と読み替えることができるので， <span class="math">¬<em>x</em><sub><em>d</em>, <em>t</em>, <em>m</em></sub> ∨ ¬<em>x</em><sub><em>d</em>ʹ, <em>t</em>ʹ, <em>m</em></sub> ∨ ¬<em>x</em><sub><em>d</em>ʺ, <em>t</em>ʺ, <em>m</em></sub></span> と表すことができる。 ただし，これだと節の数が多くなり，CNFファイルを手で書く場合は少し困る （Q3のように自動生成するならほとんど問題ない）。</p>
+<p>「同日に2回担当することはない」という条件もあるので，「3回担当することはない」は 「3日とも担当することはない」と読み替えることができる。従って <span class="math">¬<em>x</em><sub><em>S</em>, <em>t</em>, <em>m</em></sub> ∨ ¬<em>x</em><sub><em>M</em>, <em>t</em>ʹ, <em>m</em></sub> ∨ ¬<em>x</em><sub><em>T</em>, <em>t</em>ʺ, <em>m</em></sub></span> と表すことができる。 <span class="math"><em>t</em>, <em>t</em>ʹ, <em>t</em>ʺ</span>の組合せは8通りなので，手で書くとしても我慢できる範囲であろう。 「同日に2回担当することはない」は，別途，Q1の制約bと同様に記述する。</p>
 <h1 id="q3">Q3</h1>
 <p>4×4の数独を考える。下記の数独問題の解を，SATソルバを使って見つけなさい。</p>
 <pre><code>    1 2   3 4
@@ -160,10 +161,10 @@ PM |     |     |     |
 </ol>
 <p>ブール式</p>
 <ul>
-<li>制約a = <span class="math"><em>x</em><sub><em>i</em>, <em>j</em>, 1</sub> ∨ <em>x</em><sub><em>i</em>, <em>j</em>, 2</sub> ∨ <em>x</em><sub><em>i</em>, <em>j</em>, 3</sub> ∨ <em>x</em><sub><em>i</em>, <em>j</em>, 4</sub></span> for <span class="math">∀ <em>i</em>, <em>j</em></span>.</li>
-<li>制約c = <span class="math">¬ <em>x</em><sub><em>i</em>, <em>j</em>, <em>k</em></sub> ∨ ¬ <em>x</em><sub><em>i</em>, <em>j</em>ʹ, <em>k</em></sub></span> for <span class="math">∀ <em>i</em>, <em>j</em>, <em>j</em>ʹ, <em>k</em></span> such that <span class="math"><em>j</em> ≠ <em>j</em>ʹ</span>.</li>
-<li>制約d = <span class="math">¬ <em>x</em><sub><em>i</em>, <em>j</em>, <em>k</em></sub> ∨ ¬ <em>x</em><sub><em>i</em>ʹ, <em>j</em>, <em>k</em></sub></span> for <span class="math">∀ <em>i</em>, <em>i</em>ʹ, <em>j</em>, <em>k</em></span> such that <span class="math"><em>i</em> ≠ <em>i</em>ʹ</span>.</li>
-<li>制約e = <span class="math">¬ <em>x</em><sub><em>i</em>, <em>j</em>, <em>k</em></sub> ∨ ¬ <em>x</em><sub><em>i</em>ʹ, <em>j</em>ʹ, <em>k</em></sub></span> for <span class="math">∀ <em>i</em>, <em>i</em>ʹ, <em>j</em>, <em>j</em>ʹ, <em>k</em></span> such that <span class="math">(<em>i</em>, <em>j</em>) ≠ (<em>i</em>ʹ, <em>j</em>ʹ)</span> and <span class="math">(<em>i</em>, <em>j</em>)</span>と<span class="math">(<em>i</em>ʹ, <em>j</em>ʹ)</span>は同じブロック.</li>
+<li>制約a = <span class="math"><em>x</em><sub><em>i</em>, <em>j</em>, 1</sub> ∨ <em>x</em><sub><em>i</em>, <em>j</em>, 2</sub> ∨ <em>x</em><sub><em>i</em>, <em>j</em>, 3</sub> ∨ <em>x</em><sub><em>i</em>, <em>j</em>, 4</sub></span> for <span class="math">∀<em>i</em>, <em>j</em></span>.</li>
+<li>制約c = <span class="math">¬<em>x</em><sub><em>i</em>, <em>j</em>, <em>k</em></sub> ∨ ¬<em>x</em><sub><em>i</em>, <em>j</em>ʹ, <em>k</em></sub></span> for <span class="math">∀<em>i</em>, <em>j</em>, <em>j</em>ʹ, <em>k</em></span> such that <span class="math"><em>j</em> ≠ <em>j</em>ʹ</span>.</li>
+<li>制約d = <span class="math">¬<em>x</em><sub><em>i</em>, <em>j</em>, <em>k</em></sub> ∨ ¬<em>x</em><sub><em>i</em>ʹ, <em>j</em>, <em>k</em></sub></span> for <span class="math">∀<em>i</em>, <em>i</em>ʹ, <em>j</em>, <em>k</em></span> such that <span class="math"><em>i</em> ≠ <em>i</em>ʹ</span>.</li>
+<li>制約e = <span class="math">¬<em>x</em><sub><em>i</em>, <em>j</em>, <em>k</em></sub> ∨ ¬<em>x</em><sub><em>i</em>ʹ, <em>j</em>ʹ, <em>k</em></sub></span> for <span class="math">∀<em>i</em>, <em>i</em>ʹ, <em>j</em>, <em>j</em>ʹ, <em>k</em></span> such that <span class="math">(<em>i</em>, <em>j</em>) ≠ (<em>i</em>ʹ, <em>j</em>ʹ)</span> and <span class="math">(<em>i</em>, <em>j</em>)</span>と<span class="math">(<em>i</em>ʹ, <em>j</em>ʹ)</span>は同じブロック.</li>
 <li>制約f = <span class="math"><em>x</em><sub>1, 1, 1</sub> ∧ <em>x</em><sub>1, 3, 2</sub> ∧ <em>x</em><sub>3, 2, 3</sub> ∧ <em>x</em><sub>3, 4, 4</sub></span>.</li>
 </ul>
 <p>変数の数, 節の数</p>
@@ -217,7 +218,7 @@ PM |     |     |     |
 </ul>
 <h3 id="例2">例2</h3>
 <ul>
-<li>変数: <span class="math"><em>x</em>, <em>y</em>: Int</span></li>
+<li>変数: <span class="math"><em>x</em>, <em>y</em> : Int</span></li>
 <li>論理式 <span class="math"><em>F</em> = (<em>x</em> + 2<em>y</em> = 20) ∧ (<em>x</em> − <em>y</em> = 2)</span></li>
 <li>解: <span class="math">(<em>x</em>, <em>y</em>) = (8, 6)</span></li>
 </ul>
@@ -243,7 +244,7 @@ PM |     |     |     |
 <h1 id="q00">Q00</h1>
 <p>上記の例2の解を，SMTソルバを使って求めなさい。</p>
 <ul>
-<li><p>ここではSMTソルバとして <a href="http://z3.codeplex.com/">Z3</a> を使用する。</p>
+<li><p>ここではSMTソルバとして <a href="https://github.com/Z3Prover/z3">Z3</a> を使用する。</p>
 <pre><code>$ z3 -smt2 ex2.smt
 sat
 ((x 8)
@@ -252,7 +253,7 @@ sat
 <h1 id="q7">Q7</h1>
 <p>Q3の4×4数独問題の解を，SMTソルバを使って求めなさい。 <code>assert</code>の数は何個必要か。</p>
 <h2 id="answer-2">Answer</h2>
-<p><span class="math"><em>x</em><sub><em>i</em>, <em>j</em></sub>: Int</span> ; マス<span class="math">(<em>i</em>, <em>j</em>)</span>の数字</p>
+<p><span class="math"><em>x</em><sub><em>i</em>, <em>j</em></sub> : Int</span> ; マス<span class="math">(<em>i</em>, <em>j</em>)</span>の数字</p>
 <ul>
 <li>制約a, b: 各マスの数字は1〜4
 <ul>
@@ -320,17 +321,17 @@ sat
 </ul></li>
 <li>数式で書くと以下の通り。
 <ul>
-<li><span class="math">∀ <em>i</em>, <em>j</em></span>. <span class="math">1 ≤ <em>x</em>(<em>i</em>, <em>j</em>) ≤ <em>N</em></span></li>
-<li><span class="math">∀ <em>i</em>, <em>j</em>, <em>k</em></span>. <span class="math">(1 ≤ <em>j</em> &lt; <em>k</em> ≤ <em>N</em>) ⇒ (<em>x</em>(<em>i</em>, <em>j</em>) ≠ <em>x</em>(<em>i</em>, <em>k</em>))</span></li>
-<li><span class="math">∀ <em>i</em>, <em>j</em>, <em>k</em></span>. <span class="math">(1 ≤ <em>j</em> &lt; <em>k</em> ≤ <em>N</em>) ⇒ (<em>x</em>(<em>j</em>, <em>i</em>) ≠ <em>x</em>(<em>k</em>, <em>i</em>))</span></li>
-<li><span class="math">∀ <em>i</em>, <em>j</em>, <em>k</em>, <em>l</em></span>. <span class="math">((1, 1) ≤ (<em>i</em>, <em>j</em>) &lt; (<em>k</em>, <em>l</em>) ≤ (<em>N</em>, <em>N</em>)) ∧ (<em>B</em>(<em>i</em>, <em>j</em>) = <em>B</em>(<em>k</em>, <em>l</em>)) ⇒ (<em>x</em>(<em>i</em>, <em>j</em>) ≠ <em>x</em>(<em>k</em>, <em>l</em>))</span>
+<li><span class="math">∀<em>i</em>, <em>j</em></span>. <span class="math">1 ≤ <em>x</em>(<em>i</em>, <em>j</em>) ≤ <em>N</em></span></li>
+<li><span class="math">∀<em>i</em>, <em>j</em>, <em>k</em></span>. <span class="math">(1 ≤ <em>j</em> &lt; <em>k</em> ≤ <em>N</em>) ⇒ (<em>x</em>(<em>i</em>, <em>j</em>) ≠ <em>x</em>(<em>i</em>, <em>k</em>))</span></li>
+<li><span class="math">∀<em>i</em>, <em>j</em>, <em>k</em></span>. <span class="math">(1 ≤ <em>j</em> &lt; <em>k</em> ≤ <em>N</em>) ⇒ (<em>x</em>(<em>j</em>, <em>i</em>) ≠ <em>x</em>(<em>k</em>, <em>i</em>))</span></li>
+<li><span class="math">∀<em>i</em>, <em>j</em>, <em>k</em>, <em>l</em></span>. <span class="math">((1, 1) ≤ (<em>i</em>, <em>j</em>) &lt; (<em>k</em>, <em>l</em>) ≤ (<em>N</em>, <em>N</em>)) ∧ (<em>B</em>(<em>i</em>, <em>j</em>) = <em>B</em>(<em>k</em>, <em>l</em>)) ⇒ (<em>x</em>(<em>i</em>, <em>j</em>) ≠ <em>x</em>(<em>k</em>, <em>l</em>))</span>
 <ul>
 <li>ただし，2項組間の<span class="math"> &lt; ,  ≤ </span>はマスの前後関係。<span class="math"><em>B</em></span>はブロック番号。</li>
 </ul></li>
 </ul></li>
 <li>限量子を扱えるSMTソルバは少ない。扱えても計算時間が掛かる。
 <ul>
-<li>Z3のほかに<a href="http://cvc4.cs.nyu.edu/web/">CVC4</a>があるが， <code>sudoku-z3.smt</code>に対する結果は unknown。</li>
+<li>Z3のほかに<a href="https://cvc4.github.io">CVC4</a>があるが， <code>sudoku-z3.smt</code>に対する結果は unknown。</li>
 <li>Z3も，N=9の場合はtimeout (<span class="math"> &gt; 600</span>s; OS X 10.9.4/Intel Core i7 2.8GHz/16GB RAM)。</li>
 </ul></li>
 </ul>
@@ -354,8 +355,8 @@ sat
 <ul>
 <li><a href="http://smtcomp.sourceforge.net/2014/participants.shtml">Paricipants</a> を見ると，どんなツールがあるか，どの背景理論に対応しているか，大ざっぱに把握できる。</li>
 </ul></li>
-<li><a href="http://z3.codeplex.com/">Z3</a> 　　 さまざまな背景理論に対応している強力なツール。</li>
-<li><a href="http://cvc4.cs.nyu.edu/web/">CVC4</a> 　こちらもさまざまな背景理論に対応している。</li>
+<li><a href="https://github.com/Z3Prover/z3">Z3</a> 　　 さまざまな背景理論に対応している強力なツール。</li>
+<li><a href="https://cvc4.github.io">CVC4</a> 　こちらもさまざまな背景理論に対応している。</li>
 <li><a href="http://ultimate.informatik.uni-freiburg.de/smtinterpol/">SMTInterpol - an Interpolating SMT Solver</a>
 <ul>
 <li>SMTソルバの一つ。JARファイル1個で出来ているので，いろいろな環境で使いやすい。</li>
