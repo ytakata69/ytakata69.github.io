@@ -1,0 +1,76 @@
+<html>
+<head>
+  <title>flipflop</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css"><!--
+    div#body        { width: 480px; text-align: center; }
+    table#switch    { border-collapse: collapse; margin: 0px auto 30px; }
+    table#switch td { padding: 0px 15px; text-align: left;
+                      border-width: 1px; border-style: solid; }
+    table#switch th { border-width: 1px; border-style: solid;
+                      background: #f0f0ff; text-align: center; }
+    div.args        { margin: 15px auto; }
+    input.arg       { margin: 0px 60px; }
+  --></style>
+  <script type="text/javascript"><!--
+var N_SW = 2;
+var N_SLIDE = 4;
+var slide = new Array(N_SLIDE);
+for (var i = 0; i < slide.length; i++) {
+  slide[i] = new Image();
+  slide[i].src = "slide" + ("0" + i).slice(-1) + ".png";
+}
+
+var swstate = new Array(N_SW);
+for (var i = 0; i < swstate.length; i++) {
+  swstate[i] = 0;
+}
+
+var flipflopstate = 0;
+
+function calc() {
+  var val = 0;
+  for (var i = 0; i < swstate.length; i++) {
+    val += swstate[i];
+  }
+  if (val > 0) { val = 1; }
+  val += flipflopstate * 2;
+  document.images["diagram"].src = slide[val].src;
+}
+
+function turnOn(sw) {
+  swstate[sw] = 1;
+  flipflopstate = sw;
+  calc();
+}
+
+function turnOff() {
+  for (var i = 0; i < swstate.length; i++) {
+    swstate[i] = 0;
+  }
+  calc();
+}
+  //-->
+  </script>
+</head>
+<body onmouseup="turnOff()">
+<h1>flipflop</h1>
+
+<div id="body">
+<form name="form1" action="#">
+
+<img src="slide0.png" width="480" height="365"
+     alt="diagram of a SR flipflop" name="diagram"
+     usemap="#switches" />
+<map name="switches">
+  <area shape="rect" coords="94,99,158,186" href="#nogo" alt="SW0"
+        onmousedown="turnOn(0)" />
+  <area shape="rect" coords="94,196,158,283" href="#nogo" alt="SW1"
+        onmousedown="turnOn(1)" />
+</map>
+
+</form>
+</div>
+
+</body>
+</html>
