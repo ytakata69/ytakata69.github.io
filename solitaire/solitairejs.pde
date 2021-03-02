@@ -7,35 +7,41 @@
  * <li>Sounds from <a href="https://zapsplat.com">https://zapsplat.com</a></li>
  * </ul>
  */
-/* @pjs preload="64255303_p14.png,64255303_p7.png,64255303_p9.png,shadow.png"; */
+
+/* @pjs preload="64255303_p14.png,64255303_p7.png,64255303_p9.png";
+        preload="64255303_p1.png,64255303_p2.png,64255303_p5.png";
+        preload="shadow.png"; */
+
+/*
+ * For sounds, put the following code into the index.html.
+  <script>
+    var audioSrc = "./zapsplat_cartoon_wood_knock_single_17786.mp3";
+    var audioElem = new Audio(audioSrc);
+    var playSound = function() {
+      audioElem.play();
+      audioElem = new Audio(audioSrc);
+    };
+  </script>
+ */
+
+final String[] MARBLE_FILES = {
+  "64255303_p14.png", "64255303_p7.png", "64255303_p9.png",
+  "64255303_p1.png", "64255303_p2.png", "64255303_p5.png"
+};
+final String SHADOW_FILE = "shadow.png";
+final int N_MARBLE = MARBLE_FILES.length;
 
 Board board;
 View view;
 
 void setup() {
   size(500, 500);
+  frameRate(30);
   board = new Board();
   view = new View(board);
 }
 
 void draw() {
-  // 舞台
-  pushMatrix();
-  translate(width/2, height/2);
-  background(64);
-  stroke(96);
-  strokeWeight(15);
-  noFill();
-  ellipse(0, 0, width * 1.2, width * 1.2);
-  noStroke();
-  fill(255);
-  ellipse(0, 0, width * 1.1, width * 1.1);
-  stroke(229);
-  strokeWeight(5);
-  noFill();
-  ellipse(0, 0, width * 1.05, width * 1.05);
-  popMatrix();
-
   view.draw();
 }
 
@@ -45,8 +51,9 @@ void mouseClicked() {
 }
 
 void sound() {
-  playSound();
+  playSound(); // must be defined in index.html
 }
+
 /**
  * Model-View-ControllerのModel.
  */
@@ -65,7 +72,7 @@ class Board {
             (2 <= col && col < 5))
         {
           // 1以上: ビー玉の種類
-          board[row][col] = (row + col) % 3 + 1;
+          board[row][col] = (row + col) % N_MARBLE + 1;
         }
       }
     }
@@ -132,19 +139,22 @@ class View {
   final float MARKER_WD = 65;
   final float PIT_WD = 10;
 
-  PImage[] marble = new PImage[3];
+  PImage[] marble = new PImage[N_MARBLE];
   PImage shadow;
 
   View(Board board_) {
     board = board_;
     GRID = float(width)/(board.width() + 1);
-    marble[0] = loadImage("64255303_p14.png");
-    marble[1] = loadImage("64255303_p7.png");
-    marble[2] = loadImage("64255303_p9.png");
-    shadow = loadImage("shadow.png");
+    for (int i = 0; i < marble.length; i++) {
+      marble[i] = loadImage(MARBLE_FILES[i]);
+    }
+    shadow = loadImage(SHADOW_FILE);
   }
 
   void draw() {
+    // 舞台
+    drawStage();
+
     // ビー玉・くぼみ・選択マーク
     for (int row = 0; row < board.width(); row++) {
       for (int col = 0; col < board.width(); col++) {
@@ -172,6 +182,24 @@ class View {
         }
       }
     }
+  }
+  
+  void drawStage() {
+    pushMatrix();
+    translate(width/2, height/2);
+    background(64);
+    stroke(96);
+    strokeWeight(15);
+    noFill();
+    ellipse(0, 0, width * 1.2, width * 1.2);
+    noStroke();
+    fill(255);
+    ellipse(0, 0, width * 1.1, width * 1.1);
+    stroke(229);
+    strokeWeight(5);
+    noFill();
+    ellipse(0, 0, width * 1.05, width * 1.05);
+    popMatrix();
   }
 
   PVector grid2pixel(PVector g) {
