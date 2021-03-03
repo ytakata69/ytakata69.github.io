@@ -12,24 +12,15 @@
         preload="64255303_p1.png,64255303_p2.png,64255303_p5.png";
         preload="shadow.png"; */
 
-/*
- * For sounds, put the following code into the index.html.
-  <script>
-    var audioSrc = "./zapsplat_cartoon_wood_knock_single_17786.mp3";
-    var audioElem = new Audio(audioSrc);
-    var playSound = function() {
-      audioElem.play();
-      audioElem = new Audio(audioSrc);
-    };
-  </script>
- */
-
 final String[] MARBLE_FILES = {
   "64255303_p14.png", "64255303_p7.png", "64255303_p9.png",
   "64255303_p1.png", "64255303_p2.png", "64255303_p5.png"
 };
 final String SHADOW_FILE = "shadow.png";
 final int N_MARBLE = MARBLE_FILES.length;
+
+final String AUDIO_FILE = "./zapsplat_cartoon_wood_knock_single_17786.mp3";
+Object audioObj = new Audio(AUDIO_FILE);
 
 Board board;
 View view;
@@ -51,7 +42,8 @@ void mousePressed() {
 }
 
 void sound() {
-  playSound(); // must be defined in index.html
+  audioObj.play();
+  audioObj = new Audio(AUDIO_FILE);
 }
 
 /**
