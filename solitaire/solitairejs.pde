@@ -45,7 +45,7 @@ void draw() {
   view.draw();
 }
 
-void mouseClicked() {
+void mousePressed() {
   PVector colrow = view.pixel2grid(mouseX, mouseY);
   board.select(int(colrow.x), int(colrow.y));
 }
