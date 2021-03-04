@@ -45,7 +45,6 @@ void sound() {
   audioObj.play();
   audioObj = new Audio(AUDIO_FILE);
 }
-
 /**
  * Model-View-ControllerのModel.
  */
@@ -64,7 +63,9 @@ class Board {
             (2 <= col && col < 5))
         {
           // 1以上: ビー玉の種類
-          board[row][col] = (row + col) % N_MARBLE + 1;
+          int b = (row % 2) * 2 + (col % 2);
+          //int b = (row + col) % N_MARBLE;
+          board[row][col] = b + 1;
         }
       }
     }
