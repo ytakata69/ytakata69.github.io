@@ -38,7 +38,13 @@ void draw() {
 
 void mousePressed() {
   PVector colrow = view.pixel2grid(mouseX, mouseY);
-  board.select(int(colrow.x), int(colrow.y));
+  if (colrow.x < 0 && colrow.y < 0) {
+    board.undo();
+  } else if (colrow.x >= board.width() && colrow.y < 0) {
+    board.redo();
+  } else {
+    board.select(int(colrow.x), int(colrow.y));
+  }
 }
 
 void sound() {
@@ -95,16 +101,24 @@ class Board {
         int midX = int((col + selected.x) / 2);
         int midY = int((row + selected.y) / 2);
         if (isMarble(midX, midY)) {
-          board[row][col] = board[int(selected.y)][int(selected.x)];
-          board[int(selected.y)][int(selected.x)] = SPACE;
-          board[midY][midX] = SPACE;
-          selected = null;
+          history.push(int(selected.x), int(selected.y), col, row,
+                       board[midY][midX]);
+          move(int(selected.x), int(selected.y), col, row, SPACE);
           sound();
         }
       }
     }
   }
-  
+
+  private void move(int fromX, int fromY, int toX, int toY, int midMarble) {
+    int midX = int((fromX + toX) / 2);
+    int midY = int((fromY + toY) / 2);
+    board[toY][toX] = board[fromY][fromX];
+    board[fromY][fromX] = SPACE;
+    board[midY][midX] = midMarble;
+    selected = null;
+  }
+
   int width() {
     return board.length;
   }
@@ -120,6 +134,58 @@ class Board {
   }
   int getMarble(int x, int y) {
     return board[y][x];
+  }
+
+  History history = new History(board.length * board.length);
+
+  void undo() {
+    HistoryEntry he = history.back();
+    if (he == null) { return; }
+    move(int(he.to.x), int(he.to.y), int(he.from.x), int(he.from.y), he.marble);
+  }
+
+  void redo() {
+    HistoryEntry he = history.forward();
+    if (he == null) { return; }
+    move(int(he.from.x), int(he.from.y), int(he.to.x), int(he.to.y), SPACE);
+  }
+
+}
+class History {
+  HistoryEntry[] history;
+  int used = 0;
+  int pos  = 0;
+
+  History(int maxlen) {
+    history = new HistoryEntry[maxlen];
+  }
+
+  HistoryEntry back() {
+    return pos > 0 ? history[--pos] : null;
+  }
+  HistoryEntry forward() {
+    return pos < used ? history[pos++] : null;
+  }
+
+  void push(int fromX, int fromY, int toX, int toY, int marble) {
+    push(new HistoryEntry(new PVector(fromX, fromY),
+                          new PVector(toX, toY), marble));
+  }
+  void push(HistoryEntry he) {
+    if (pos < history.length) {
+      history[pos++] = he;
+      used = pos;
+    }
+  }
+}
+
+class HistoryEntry {
+  PVector from, to;
+  int marble;
+  HistoryEntry(PVector from_, PVector to_, int marble_) {
+    from = from_;
+    to = to_;
+    marble = marble_;
   }
 }
 /**
