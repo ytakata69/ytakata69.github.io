@@ -25,6 +25,9 @@ Object audioObj = new Audio(AUDIO_FILE);
 Board board;
 View view;
 
+boolean waitingDoubleClick;
+int waitingDoubleClickStart;
+
 void setup() {
   size(500, 500);
   frameRate(30);
@@ -34,6 +37,9 @@ void setup() {
 
 void draw() {
   view.draw();
+  if (waitingDoubleClick && millis() - waitingDoubleClickStart > 900) {
+    waitingDoubleClick = false;
+  }
 }
 
 void mousePressed() {
@@ -42,6 +48,14 @@ void mousePressed() {
     board.undo();
   } else if (colrow.x >= board.width() && colrow.y < 0) {
     board.redo();
+  } else if (colrow.x < 0 && colrow.y >= board.width()) {
+    if (waitingDoubleClick) {
+      board.reset();
+      waitingDoubleClick = false;
+    } else {
+      waitingDoubleClick = true;
+      waitingDoubleClickStart = millis();
+    }
   } else {
     board.select(int(colrow.x), int(colrow.y));
   }
@@ -62,7 +76,14 @@ class Board {
   // 選択中のビー玉の列と行
   PVector selected = null;
 
+  // undo history
+  History history;
+
   Board() {
+    this.reset();
+  }
+
+  void reset() {
     for (int row = 0; row < board.length; row++) {
       for (int col = 0; col < board[row].length; col++) {
         if ((2 <= row && row < 5) ||
@@ -73,9 +94,14 @@ class Board {
           //int b = (row + col) % N_MARBLE;
           board[row][col] = b + 1;
         }
+        else {
+          board[row][col] = OUT_OF_BOUNDS;
+        }
       }
     }
     board[3][3] = SPACE;
+    selected = null;
+    history = new History(board.length * board.length);
   }
 
   void select(int col, int row) {
@@ -135,8 +161,6 @@ class Board {
   int getMarble(int x, int y) {
     return board[y][x];
   }
-
-  History history = new History(board.length * board.length);
 
   void undo() {
     HistoryEntry he = history.back();
@@ -244,9 +268,10 @@ class View {
   }
   
   void drawStage() {
+    background(waitingDoubleClick ? 80 : 64);
+
     pushMatrix();
     translate(width/2, height/2);
-    background(64);
     stroke(96);
     strokeWeight(15);
     noFill();
