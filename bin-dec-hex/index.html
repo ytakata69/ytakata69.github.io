@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>a bin-dec-hex converter</title>
+  <style>
+    input { text-align: right }
+  </style>
+</head>
+<body>
+  <h1>A Binary-Decimal-Hexadecimal Converter</h1>
+  <form>
+      <p><label for="bin">Binary (2):</label>
+          <input id="bin" type="text" size="20" /></p>
+      <p><label for="dec">Decimal (10):</label>
+          <input id="dec" type="text" size="20" /></p>
+      <p><label for="hex">Hexadecimal (16):</label>
+          <input id="hex" type="text" size="20" /></p>
+  </form>
+
+<script>
+const radices = ["bin", "dec", "hex"];
+const boxes = radices.map((radix) => document.getElementById(radix));
+const bases = {"bin": 2, "dec": 10, "hex": 16};
+const badchars = {"bin": /[^01]/, "dec": /[^0-9]/, "hex": /[^0-9A-Fa-f]/};
+
+function normalize(value, radix) {
+  return value.replace(badchars[radix], "");
+}
+
+function inputChange(event) {
+  const modified = event.currentTarget;
+  const radix = modified.id;
+  const normvalue = normalize(modified.value, radix);
+  const value = normvalue == "" ? "" : parseInt(normvalue, bases[radix]);
+  boxes.forEach((box) => {
+    if (box !== modified) {
+      box.value = value == "" ? "" : value.toString(bases[box.id]);
+    }
+  });
+}
+
+boxes.forEach((box) => {
+  box.addEventListener('input', inputChange);
+});
+</script>
+
+</body>
+</html>
