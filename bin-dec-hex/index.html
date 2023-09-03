@@ -20,23 +20,27 @@
 <script>
 const radices = ["bin", "dec", "hex"];
 const boxes = radices.map((radix) => document.getElementById(radix));
-const bases = {"bin": 2, "dec": 10, "hex": 16};
-const badchars = {"bin": /[^01]/, "dec": /[^0-9]/, "hex": /[^0-9A-Fa-f]/};
+
+const base = {"bin": 2, "dec": 10, "hex": 16};
+const badchar = {"bin": /[^01]/, "dec": /[^0-9]/, "hex": /[^0-9A-Fa-f]/};
+const wdunit = {"bin": 4, "dec": 1, "hex": 2};
 
 function normalize(value, radix) {
-  return value.replace(badchars[radix], "");
+  return value.replace(badchar[radix], "");
 }
 
 function inputChange(event) {
   const modified = event.currentTarget;
   const radix = modified.id;
   const normvalue = normalize(modified.value, radix);
-  const value = normvalue == "" ? "" : parseInt(normvalue, bases[radix]);
+  const value = normvalue == "" ? "" : parseInt(normvalue, base[radix]);
   boxes.forEach((box) => {
     if (box === modified) {
       box.value = normvalue;
     } else {
-      box.value = value == "" ? "" : value.toString(bases[box.id]);
+      const v = value == "" ? "" : value.toString(base[box.id]);
+      const wd = Math.ceil(v.length / wdunit[box.id]) * wdunit[box.id];
+      box.value = v.padStart(wd, '0');
     }
   });
 }
