@@ -33,7 +33,9 @@ function inputChange(event) {
   const normvalue = normalize(modified.value, radix);
   const value = normvalue == "" ? "" : parseInt(normvalue, bases[radix]);
   boxes.forEach((box) => {
-    if (box !== modified) {
+    if (box === modified) {
+      box.value = normvalue;
+    } else {
       box.value = value == "" ? "" : value.toString(bases[box.id]);
     }
   });
