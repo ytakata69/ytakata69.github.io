@@ -13,7 +13,7 @@
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-EPF2X7PV.js"></script>
-    <script src="dist/sidebar_items-FCA68925.js"></script>
+    <script src="dist/sidebar_items-067E8F0E.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -125,6 +125,20 @@ Pages
       </a>
       <span class="text">Summary</span>
     </h1>
+<div class="summary-types summary">
+  <h2>
+    <a href="#types">Types</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:value/0" translate="no">value()</a>
+
+      </div>
+
+    </div>
+
+</div>
 <div class="summary-functions summary">
   <h2>
     <a href="#functions">Functions</a>
@@ -148,6 +162,41 @@ Numeric numbers are converted into float numbers.</p></div>
   </section>
 
 
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:value/0">
+
+  <div class="detail-header">
+    <a href="#t:value/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">value()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> value() :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
   <section id="functions" class="details-list">
     <h1 class="section-heading">
       <a class="hover-link" href="#functions">
@@ -170,6 +219,12 @@ Numeric numbers are converted into float numbers.</p></div>
 
   <section class="docstring">
 
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> sigil_v(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), [<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">char</a>()]) :: [[<a href="#t:value/0">value</a>()]] | [{<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="#t:value/0">value</a>()}]</pre>
+
+      </div>
+
 <p>Implement the <code class="inline">~v</code> sigil, which takes a string containing
 multiple comma-separated lines, converts each line into a list,
 and returns a list of those lists.
@@ -186,7 +241,7 @@ The keys in each keyword list is taken from the first line.
   ...&gt; 1,2,3
   ...&gt; cat,dog
   ...&gt; &quot;&quot;&quot;</span><span class="w">
-  </span><span class="p" data-group-id="0281424441-1">[</span><span class="p" data-group-id="0281424441-2">[</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p" data-group-id="0281424441-2">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0281424441-3">[</span><span class="s">&quot;cat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dog&quot;</span><span class="p" data-group-id="0281424441-3">]</span><span class="p" data-group-id="0281424441-1">]</span><span class="w">
+  </span><span class="p" data-group-id="2135103508-1">[</span><span class="p" data-group-id="2135103508-2">[</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p" data-group-id="2135103508-2">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2135103508-3">[</span><span class="s">&quot;cat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dog&quot;</span><span class="p" data-group-id="2135103508-3">]</span><span class="p" data-group-id="2135103508-1">]</span><span class="w">
 
   </span><span class="gp unselectable">iex&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nc">CsvSigil</span><span class="w">
   </span><span class="gp unselectable">iex&gt; </span><span class="sx">~v&quot;&quot;&quot;
@@ -195,11 +250,11 @@ The keys in each keyword list is taken from the first line.
   ...&gt; Milk,1,2.99
   ...&gt; Battery,6,8.00
   ...&gt; &quot;&quot;&quot;h</span><span class="w">
-  </span><span class="p" data-group-id="0281424441-4">[</span><span class="w">
-    </span><span class="p" data-group-id="0281424441-5">[</span><span class="ss">Item</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Teddy bear&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">Qty</span><span class="p">:</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="ss">Price</span><span class="p">:</span><span class="w"> </span><span class="mf">34.95</span><span class="p" data-group-id="0281424441-5">]</span><span class="p">,</span><span class="w">
-    </span><span class="p" data-group-id="0281424441-6">[</span><span class="ss">Item</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Milk&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">Qty</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="ss">Price</span><span class="p">:</span><span class="w"> </span><span class="mf">2.99</span><span class="p" data-group-id="0281424441-6">]</span><span class="p">,</span><span class="w">
-    </span><span class="p" data-group-id="0281424441-7">[</span><span class="ss">Item</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Battery&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">Qty</span><span class="p">:</span><span class="w"> </span><span class="mf">6.0</span><span class="p">,</span><span class="w"> </span><span class="ss">Price</span><span class="p">:</span><span class="w"> </span><span class="mf">8.00</span><span class="p" data-group-id="0281424441-7">]</span><span class="w">
-  </span><span class="p" data-group-id="0281424441-4">]</span></code></pre>
+  </span><span class="p" data-group-id="2135103508-4">[</span><span class="w">
+    </span><span class="p" data-group-id="2135103508-5">[</span><span class="ss">Item</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Teddy bear&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">Qty</span><span class="p">:</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="ss">Price</span><span class="p">:</span><span class="w"> </span><span class="mf">34.95</span><span class="p" data-group-id="2135103508-5">]</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="2135103508-6">[</span><span class="ss">Item</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Milk&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">Qty</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="ss">Price</span><span class="p">:</span><span class="w"> </span><span class="mf">2.99</span><span class="p" data-group-id="2135103508-6">]</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="2135103508-7">[</span><span class="ss">Item</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Battery&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">Qty</span><span class="p">:</span><span class="w"> </span><span class="mf">6.0</span><span class="p">,</span><span class="w"> </span><span class="ss">Price</span><span class="p">:</span><span class="w"> </span><span class="mf">8.00</span><span class="p" data-group-id="2135103508-7">]</span><span class="w">
+  </span><span class="p" data-group-id="2135103508-4">]</span></code></pre>
   </section>
 </section>
 
